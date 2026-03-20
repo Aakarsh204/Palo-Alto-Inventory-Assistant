@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Valley Dairy Co-op - Milk & Plant-Based Products</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .supplier-info {
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c2e 100%);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .supplier-info h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .supplier-info p {
+            margin-bottom: 10px;
+            font-size: 1.05em;
+        }
+        
+        .supplier-info .location {
+            font-weight: 600;
+        }
+        
+        .supplier-info .lead-time {
+            color: #b3ff99;
+            font-weight: 600;
+        }
+        
+        .supplier-info .tags {
+            background: rgba(255,255,255,0.12);
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            font-size: 0.95em;
+        }
+        
+        .supplier-info .contact {
+            margin-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.3);
+            padding-top: 15px;
+            font-weight: 500;
+        }
+        
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .product {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .product:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .product.type-dairy {
+            border-top: 4px solid #3d7cc5;
+        }
+        
+        .product.type-dairy-alt {
+            border-top: 4px solid #2d9c4e;
+        }
+        
+        .product-name {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+        
+        .price {
+            font-size: 1.8em;
+            color: #2d9c4e;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .min-order {
+            background: #f0f0f0;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            margin-bottom: 12px;
+            color: #555;
+        }
+        
+        .sustainability-score {
+            display: inline-block;
+            background: #4caf50;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 0.95em;
+        }
+        
+        .sustainability-score.score-high {
+            background: #388e3c;
+        }
+        
+        .sustainability-score.score-medium {
+            background: #f57c00;
+        }
+        
+        .sustainability-score.score-low {
+            background: #d32f2f;
+        }
+        
+        .description {
+            color: #666;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="supplier-info">
+            <h1>Green Valley Dairy Co-op</h1>
+            <p class="location">📍 Chennai, Tamil Nadu, India</p>
+            <p class="lead-time">⏱️ Lead time: 1 day (Daily morning deliveries)</p>
+            <p class="tags">✓ local • grass-fed • glass-bottle-returns • certified-organic</p>
+            <p>Sustainability Rating: <strong>89/100</strong></p>
+            <p class="contact">📧 Contact: orders@greenvalleydairy.in</p>
+        </div>
+        
+        <div class="products">
+            <div class="product type-dairy">
+                <h2 class="product-name">Whole Milk</h2>
+                <p class="price">₹72/L</p>
+                <p class="min-order">Minimum Order: 5 L</p>
+                <p class="sustainability-score score-high">85</p>
+                <p class="description">Fresh whole milk from grass-fed cows, collected daily. Rich in natural fats and calcium. Smooth creamy texture perfect for latte and cappuccino preparations. Delivered in reusable glass bottles with daily return service.</p>
+            </div>
+            
+            <div class="product type-dairy">
+                <h2 class="product-name">Toned Milk</h2>
+                <p class="price">₹58/L</p>
+                <p class="min-order">Minimum Order: 5 L</p>
+                <p class="sustainability-score score-high">82</p>
+                <p class="description">Standardized toned milk with optimal fat and SNF levels. Ideal for high-volume daily service with consistent taste profile. Sourced from cooperative farms across Tamil Nadu. Available in 20L bulk containers or reusable bottles.</p>
+            </div>
+            
+            <div class="product type-dairy-alt">
+                <h2 class="product-name">Oat Milk</h2>
+                <p class="price">₹145/L</p>
+                <p class="min-order">Minimum Order: 3 L</p>
+                <p class="sustainability-score score-high">91</p>
+                <p class="description">Plant-based oat milk with naturally creamy texture. Lower carbon footprint than dairy alternatives. Fortified with calcium and vitamins. Barista-grade froth capability. Certified vegan and organic. Eco-friendly TetraPak packaging.</p>
+            </div>
+            
+            <div class="product type-dairy-alt">
+                <h2 class="product-name">Almond Milk</h2>
+                <p class="price">₹180/L</p>
+                <p class="min-order">Minimum Order: 2 L</p>
+                <p class="sustainability-score score-medium">79</p>
+                <p class="description">Premium cold-pressed almond milk with subtle nutty flavor. Unsweetened and naturally creamy. Rich in protein and low in calories. Works well in specialty drinks. Premium packaging with extended shelf life of 45 days.</p>
+            </div>
+            
+            <div class="product type-dairy-alt">
+                <h2 class="product-name">Coconut Milk</h2>
+                <p class="price">₹110/L</p>
+                <p class="min-order">Minimum Order: 3 L</p>
+                <p class="sustainability-score score-high">88</p>
+                <p class="description">Pure coconut milk from natural coconut sources. Rich tropical flavor perfect for specialty beverages. Medium fat content for balanced taste. Sustainably sourced from ethical coconut farms. Compatible with espresso-based drinks.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

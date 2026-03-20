@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blue Tokai Wholesale - Coffee & Tea Supplier</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .supplier-info {
+            background: linear-gradient(135deg, #6b4423 0%, #8b5a3c 100%);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .supplier-info h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .supplier-info p {
+            margin-bottom: 10px;
+            font-size: 1.05em;
+        }
+        
+        .supplier-info .location {
+            font-weight: 600;
+        }
+        
+        .supplier-info .lead-time {
+            color: #ffd700;
+            font-weight: 600;
+        }
+        
+        .supplier-info .min-order-info {
+            font-style: italic;
+            color: #e8d5b7;
+        }
+        
+        .supplier-info .tags {
+            background: rgba(255,255,255,0.1);
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            font-size: 0.95em;
+        }
+        
+        .supplier-info .contact {
+            margin-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.3);
+            padding-top: 15px;
+            font-weight: 500;
+        }
+        
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .product {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .product:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .product.type-coffee {
+            border-top: 4px solid #8b5a3c;
+        }
+        
+        .product.type-tea {
+            border-top: 4px solid #2d5016;
+        }
+        
+        .product.type-disposable {
+            border-top: 4px solid #3a7ca5;
+        }
+        
+        .product-name {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+        
+        .price {
+            font-size: 1.8em;
+            color: #d4822f;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .min-order {
+            background: #f0f0f0;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            margin-bottom: 12px;
+            color: #555;
+        }
+        
+        .sustainability-score {
+            display: inline-block;
+            background: #4caf50;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 0.95em;
+        }
+        
+        .sustainability-score.score-high {
+            background: #388e3c;
+        }
+        
+        .sustainability-score.score-medium {
+            background: #f57c00;
+        }
+        
+        .sustainability-score.score-low {
+            background: #d32f2f;
+        }
+        
+        .description {
+            color: #666;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="supplier-info">
+            <h1>Blue Tokai Wholesale</h1>
+            <p class="location">📍 Bangalore, Karnataka, India</p>
+            <p class="lead-time">⏱️ Lead time: 2-3 business days</p>
+            <p class="min-order-info">📦 Free delivery above ₹2000</p>
+            <p class="tags">✓ single-origin • direct-trade • low-carbon • compostable-packaging</p>
+            <p class="contact">📧 Contact: wholesale@bluetokai.in</p>
+        </div>
+        
+        <div class="products">
+            <div class="product type-coffee">
+                <h2 class="product-name">Coorg Single Origin Arabica</h2>
+                <div class="price">₹850/kg</div>
+                <div class="min-order">Minimum Order: 1 kg</div>
+                <div class="sustainability-score score-high">94</div>
+                <p class="description">Premium high-altitude arabica from Coorg region. Medium roast with notes of dark chocolate and hazelnut. Direct trade certified, shade-grown in biodiverse estates. Ideal for espresso and filter coffee applications.</p>
+            </div>
+            
+            <div class="product type-coffee">
+                <h2 class="product-name">Nilgiri Estate Robusta Blend</h2>
+                <div class="price">₹380/kg</div>
+                <div class="min-order">Minimum Order: 2 kg</div>
+                <div class="sustainability-score score-high">91</div>
+                <p class="description">Bold, full-bodied robusta with 20% washed arabica blend. Dark roast with spicy undertones. Perfect for chai lattes and milk-based drinks. Sourced from certified sustainable estates in Nilgiri Mountains.</p>
+            </div>
+            
+            <div class="product type-tea">
+                <h2 class="product-name">Cardamom & Ginger Spice Tea</h2>
+                <div class="price">₹420/500g</div>
+                <div class="min-order">Minimum Order: 500 g</div>
+                <div class="sustainability-score score-medium">87</div>
+                <p class="description">Traditional chai blend with hand-crushed cardamom pods, ginger, and black tea. Organic-certified ingredients. No artificial additives. Authentic Indian masala tea fusion. Available in loose-leaf or tea bag compatible cut.</p>
+            </div>
+            
+            <div class="product type-disposable">
+                <h2 class="product-name">Eco Ceramic Reusable Cup (12 oz)</h2>
+                <div class="price">₹280/unit</div>
+                <div class="min-order">Minimum Order: 50 units</div>
+                <div class="sustainability-score score-low">78</div>
+                <p class="description">Durable ceramic cup with silicone grip. Dishwasher safe. BPA-free. Reduces single-use waste by up to 300 cups per unit annually. Custom branding available for bulk orders. White ceramic with matte finish.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,539 @@
+{% extends "base.html" %}
+
+{% block title %}Log Stock Event - CaféTrack Inventory Assistant{% endblock %}
+
+{% block content %}
+<div class="log-event-container">
+    <h1>Log Stock Event</h1>
+    
+    <p class="intro-text">
+        Record when you receive a delivery or perform an end-of-day stock count. 
+        Usage is automatically calculated from the difference between stock events, so you don't need to log it directly.
+    </p>
+
+    <!-- Error Display -->
+    {% if errors %}
+    <div class="error-container">
+        {% for error in errors %}
+        <div class="alert alert-error">
+            <span class="alert-icon">❌</span>
+            <span class="alert-message">{{ error }}</span>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Log Event Form -->
+    <form method="POST" action="{{ url_for('log_event_submit') }}" class="log-event-form">
+        
+        <!-- Item Dropdown -->
+        <div class="form-group">
+            <label for="item_id" class="form-label">Item <span class="required">*</span></label>
+            <select id="item_id" name="item_id" class="form-select" required>
+                <option value="">— Select an item —</option>
+                {% for item in items %}
+                <option 
+                    value="{{ item.get('item_id', '') }}"
+                    {% if preselected_item_id and preselected_item_id == item.get('item_id', '') %}selected{% endif %}
+                    {% if form_data.get('item_id') == item.get('item_id', '') %}selected{% endif %}
+                >
+                    {{ item.get('name', 'Unknown') }} (current: {{ item.get('current_stock', 0) }} {{ item.get('unit', 'units') }})
+                </option>
+                {% endfor %}
+            </select>
+            <span class="form-hint">Select the inventory item to log</span>
+        </div>
+
+        <!-- Event Type -->
+        <fieldset class="form-fieldset">
+            <legend class="form-legend">Event Type <span class="required">*</span></legend>
+            
+            <div class="radio-group">
+                <div class="radio-option">
+                    <input 
+                        type="radio" 
+                        id="event_received" 
+                        name="event_type" 
+                        value="received"
+                        {% if form_data.get('event_type') == 'received' or not form_data.get('event_type') %}checked{% endif %}
+                        required
+                    >
+                    <label for="event_received" class="radio-label">
+                        <span class="radio-text">📦 Stock Received</span>
+                        <span class="radio-description">A delivery has arrived</span>
+                    </label>
+                </div>
+
+                <div class="radio-option">
+                    <input 
+                        type="radio" 
+                        id="event_remaining" 
+                        name="event_type" 
+                        value="remaining"
+                        {% if form_data.get('event_type') == 'remaining' %}checked{% endif %}
+                        required
+                    >
+                    <label for="event_remaining" class="radio-label">
+                        <span class="radio-text">📋 End-of-Day Count</span>
+                        <span class="radio-description">Remaining stock after closing</span>
+                    </label>
+                </div>
+            </div>
+        </fieldset>
+
+        <!-- Quantity -->
+        <div class="form-group">
+            <label for="quantity" class="form-label">
+                Quantity <span class="required">*</span>
+                <span class="quantity-hint">
+                    (for Stock Received: amount received; for End-of-Day: total remaining)
+                </span>
+            </label>
+            <input 
+                type="number" 
+                id="quantity" 
+                name="quantity" 
+                step="0.01" 
+                min="0" 
+                class="form-input"
+                value="{{ form_data.get('quantity', '') }}"
+                placeholder="0.00"
+                required
+            >
+            <span class="form-hint">Enter the quantity received or currently in stock</span>
+        </div>
+
+        <!-- Date -->
+        <div class="form-group">
+            <label for="date" class="form-label">Date <span class="required">*</span></label>
+            <input 
+                type="date" 
+                id="date" 
+                name="date" 
+                class="form-input"
+                value="{{ form_data.get('date', today) }}"
+                required
+            >
+            <span class="form-hint">Date of the event (defaults to today)</span>
+        </div>
+
+        <!-- Notes (Optional) -->
+        <div class="form-group">
+            <label for="notes" class="form-label">Notes <span class="optional">(optional)</span></label>
+            <input 
+                type="text" 
+                id="notes" 
+                name="notes" 
+                class="form-input"
+                value="{{ form_data.get('notes', '') }}"
+                placeholder="e.g., damaged items, supplier delay..."
+            >
+            <span class="form-hint">Add any relevant notes about this event</span>
+        </div>
+
+        <!-- Form Actions -->
+        <div class="form-actions">
+            <button type="submit" class="button button-primary">Log Event</button>
+            <a href="{{ url_for('dashboard') }}" class="button button-secondary">Cancel</a>
+        </div>
+    </form>
+
+    <!-- Info Box -->
+    <div class="info-box">
+        <div class="info-icon">ℹ️</div>
+        <div class="info-content">
+            <h3>How Usage Is Calculated</h3>
+            <p>
+                Usage is automatically derived from the difference between consecutive stock events. 
+                For example, if you logged 10 units at end-of-day on Monday and 8 units on Tuesday, 
+                the system will calculate 2 units of usage on Tuesday. This is more accurate than 
+                manual entry and helps us detect spillage or waste.
+            </p>
+        </div>
+    </div>
+
+    <!-- Log Order Form (moved from Recipes page) -->
+    <div class="order-log-card">
+        <h2>Log Cafe Order</h2>
+        <p class="intro-text">
+            Record recipe sales to keep demand forecasting and ingredient depletion in sync.
+        </p>
+
+        <form method="POST" action="{{ url_for('log_order') }}" class="log-event-form order-form">
+            <div class="form-group">
+                <label for="recipe_id" class="form-label">Recipe <span class="required">*</span></label>
+                <select id="recipe_id" name="recipe_id" class="form-select" required>
+                    <option value="">— Select a recipe —</option>
+                    {% for recipe in recipes %}
+                    <option value="{{ recipe.get('recipe_id', '') }}">
+                        {{ recipe.get('recipe_id', '') }} - {{ recipe.get('recipe_name', 'Unknown') }}
+                    </option>
+                    {% endfor %}
+                </select>
+                <span class="form-hint">Choose the sold recipe</span>
+            </div>
+
+            <div class="form-group">
+                <label for="quantity_sold" class="form-label">Quantity Sold <span class="required">*</span></label>
+                <input
+                    type="number"
+                    id="quantity_sold"
+                    name="quantity_sold"
+                    min="1"
+                    value="1"
+                    class="form-input order-quantity-input"
+                    required
+                >
+                <span class="form-hint">Number of servings sold today</span>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="button button-primary">Log Order</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+/* Log Event Page Styles */
+.log-event-container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.log-event-container h1 {
+    color: var(--green-dark);
+    margin-bottom: 12px;
+    font-size: 28px;
+}
+
+.intro-text {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 24px;
+    font-size: 14px;
+}
+
+/* Error Container */
+.error-container {
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    animation: slideDown 0.3s ease-out;
+}
+
+.alert-error {
+    background-color: rgba(239, 68, 68, 0.12);
+    border: 1px solid rgba(239, 68, 68, 0.28);
+    color: #7f1d1d;
+}
+
+.alert-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.alert-message {
+    flex: 1;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Form Styles */
+.log-event-form {
+    background: var(--surface-card);
+    padding: 28px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    margin-bottom: 24px;
+}
+
+.order-log-card {
+    margin-top: 24px;
+}
+
+.order-log-card h2 {
+    color: var(--green-dark);
+    margin: 0 0 8px 0;
+    font-size: 22px;
+}
+
+.order-form {
+    margin-top: 12px;
+}
+
+.order-quantity-input {
+    max-width: 180px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 14px;
+}
+
+.required {
+    color: #dc2626;
+    margin-left: 2px;
+}
+
+.optional {
+    color: var(--text-secondary);
+    font-weight: normal;
+    font-size: 12px;
+}
+
+.form-input,
+.form-select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: inherit;
+    transition: border-color 0.2s;
+}
+
+.form-input:focus,
+.form-select:focus {
+    outline: none;
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.16);
+}
+
+.form-input::placeholder {
+    color: #94a3b8;
+}
+
+.form-hint {
+    display: block;
+    margin-top: 6px;
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.quantity-hint {
+    display: block;
+    font-weight: normal;
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+/* Fieldset and Radio Buttons */
+.form-fieldset {
+    border: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.form-legend {
+    display: block;
+    margin-bottom: 12px;
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 14px;
+}
+
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.radio-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.radio-option input[type="radio"] {
+    margin-top: 4px;
+    cursor: pointer;
+    accent-color: var(--blue);
+}
+
+.radio-option:has(input[type="radio"]:checked) {
+    border-color: var(--blue);
+    background-color: rgba(37, 99, 235, 0.08);
+}
+
+.radio-label {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    cursor: pointer;
+}
+
+.radio-text {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.radio-description {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+/* Form Actions */
+.form-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.button-primary {
+    background-color: var(--green-mid);
+    color: white;
+}
+
+.button-primary:hover {
+    opacity: 0.9;
+}
+
+.button-secondary {
+    background-color: var(--surface-muted);
+    color: var(--text-primary);
+}
+
+.button-secondary:hover {
+    opacity: 0.9;
+}
+
+/* Info Box */
+.info-box {
+    background: rgba(47, 111, 106, 0.1);
+    border: 1px solid rgba(47, 111, 106, 0.35);
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    gap: 12px;
+}
+
+.info-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.info-content {
+    flex: 1;
+}
+
+.info-content h3 {
+    color: var(--green-dark);
+    margin: 0 0 8px 0;
+    font-size: 16px;
+}
+
+.info-content p {
+    color: var(--text-primary);
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .log-event-container {
+        padding: 12px;
+    }
+
+    .log-event-form {
+        padding: 20px;
+    }
+
+    .log-event-container h1 {
+        font-size: 24px;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .button {
+        width: 100%;
+    }
+
+    .info-box {
+        flex-direction: column;
+    }
+
+    .info-icon {
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .log-event-container h1 {
+        font-size: 20px;
+    }
+
+    .log-event-form {
+        padding: 16px;
+    }
+
+    .form-label {
+        font-size: 13px;
+    }
+
+    .form-input,
+    .form-select {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    .radio-option {
+        padding: 10px;
+    }
+
+    .button {
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+}
+</style>
+{% endblock %}

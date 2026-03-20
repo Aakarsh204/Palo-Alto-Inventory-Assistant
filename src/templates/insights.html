@@ -1,0 +1,932 @@
+{% extends "base.html" %}
+
+{% block title %}Inventory Insights - CaféTrack Inventory Assistant{% endblock %}
+
+{% block content %}
+<div class="insights-container">
+    <h1>Inventory Insights</h1>
+    <p class="intro-text">Deep analysis combining classical AI models, agent-powered recommendations, and supplier data.</p>
+
+    <!-- Empty State -->
+    {% if not insight_items %}
+    <div class="success-panel">
+        <div class="success-icon">✅</div>
+        <div class="success-content">
+            <h2>All items are stable</h2>
+            <p>No immediate action needed. Keep up the great inventory management!</p>
+            <a href="{{ url_for('dashboard') }}" class="button button-primary">Back to Dashboard</a>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Items Loop -->
+    {% for insight in insight_items %}
+    <div class="insight-card">
+        <!-- Card Header -->
+        <div class="card-header">
+            <div class="header-left">
+                <h2 class="item-name">{{ insight.item.name }}</h2>
+                <div class="header-meta">
+                    {% set cluster_label = insight.cluster.cluster_label %}
+                    {% if cluster_label == 'Reorder Now' %}
+                    <span class="badge badge-status-reorder">{{ cluster_label }}</span>
+                    {% elif cluster_label == 'Expiry Risk' %}
+                    <span class="badge badge-status-expiry">{{ cluster_label }}</span>
+                    {% elif cluster_label == 'Stable' %}
+                    <span class="badge badge-status-stable">{{ cluster_label }}</span>
+                    {% else %}
+                    <span class="badge badge-status-default">{{ cluster_label }}</span>
+                    {% endif %}
+                    <span class="stock-info">
+                        {{ insight.item.current_stock }} {{ insight.item.unit }}
+                    </span>
+                </div>
+            </div>
+            <div class="header-right">
+                <span class="stock-info">
+                    {{ insight.cluster.days_until_expiry }} days to expiry
+                </span>
+            </div>
+        </div>
+
+        <!-- Panel 1: Classical AI Analysis -->
+        <div class="insight-panel">
+            <h3 class="panel-title">📊 Classical AI Analysis</h3>
+            
+            <div class="panel-layout">
+                <!-- Left Column: Predictions -->
+                <div class="prediction-column">
+                    <div class="prediction-section">
+                        <h4>Stockout Prediction</h4>
+                        {% if insight.prediction.stock_days is not none %}
+                        <p class="prediction-line">
+                            <span class="label">Stock-event based:</span>
+                            <span class="value">{{ insight.prediction.stock_days }} days</span>
+                        </p>
+                        {% else %}
+                        <p class="prediction-line">
+                            <span class="label">Stock-event based:</span>
+                            <span class="value unavailable">Insufficient data</span>
+                        </p>
+                        {% endif %}
+                        
+                        {% if insight.prediction.order_days is not none %}
+                        <p class="prediction-line">
+                            <span class="label">Order-history based:</span>
+                            <span class="value">{{ insight.prediction.order_days }} days</span>
+                        </p>
+                        {% else %}
+                        <p class="prediction-line">
+                            <span class="label">Order-history based:</span>
+                            <span class="value unavailable">Insufficient data</span>
+                        </p>
+                        {% endif %}
+
+                        <!-- Confidence Badge -->
+                        {% set conf = insight.prediction.confidence %}
+                        <div class="confidence-badge">
+                            {% if conf == 'high' %}
+                            <span class="confidence high">✓ High Confidence</span>
+                            {% elif conf == 'medium' %}
+                            <span class="confidence medium">◐ Medium Confidence</span>
+                            {% elif conf == 'low' %}
+                            <span class="confidence low">⚠ Low Confidence</span>
+                            {% else %}
+                            <span class="confidence insufficient">— Insufficient Data</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Reconciliation Table -->
+                <div class="reconciliation-column">
+                    <h4>Usage Reconciliation (7-day)</h4>
+                    {% if insight.reconciliation %}
+                    <div class="table-responsive">
+                        <table class="reconciliation-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Stock Usage</th>
+                                    <th>Order Usage</th>
+                                    <th>Discrepancy</th>
+                                    <th>Flag</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for rec in insight.reconciliation %}
+                                <tr {% if rec.variance_flagged %}class="row-flagged"{% endif %}>
+                                    <td class="cell-date">{{ rec.date }}</td>
+                                    <td class="cell-number">{{ rec.usage }}</td>
+                                    <td class="cell-number">{{ rec.estimated_usage }}</td>
+                                    <td class="cell-number">{{ rec.discrepancy }}</td>
+                                    <td class="cell-flag">
+                                        {% if rec.variance_flagged %}
+                                        <span class="flag-badge">⚠️ Variance</span>
+                                        {% else %}
+                                        <span class="flag-ok">✓</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <p class="no-data">No reconciliation data available.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel 2: AI Agent Insights -->
+        <div class="insight-panel">
+            <h3 class="panel-title">🤖 AI Agent Insights</h3>
+            
+            {% if insight.agent_result %}
+            <div class="agent-section">
+                <div class="agent-insights markdown-content">
+                    {{ insight.agent_result.insights | markdown | safe }}
+                </div>
+                
+                <div class="agent-footer">
+                    {% if insight.agent_result.source in ['ai-agent', 'ai-agent-cache'] %}
+                    <div class="agent-metadata ai">
+                        <span class="metadata-icon">🤖</span>
+                        <span class="metadata-text">Generated by {{ insight.agent_result.model }}</span>
+                    </div>
+                    {% else %}
+                    <div class="agent-metadata fallback">
+                        <span class="metadata-icon">⚙️</span>
+                        <span class="metadata-text">Rule-based summary (AI agent unavailable)</span>
+                    </div>
+                    {% if insight.agent_result.error %}
+                    <div class="agent-error-note">
+                        <strong>Agent error:</strong> {{ insight.agent_result.error }}
+                    </div>
+                    {% endif %}
+                    {% endif %}
+
+                    {% if insight.agent_result.cache_hit %}
+                    <div class="agent-metadata cache">
+                        <span class="metadata-icon">🗂️</span>
+                        <span class="metadata-text">Served from cache</span>
+                    </div>
+                    {% endif %}
+
+                    {% if insight.agent_result.budget_limited %}
+                    <div class="agent-metadata budget">
+                        <span class="metadata-icon">⏱️</span>
+                        <span class="metadata-text">AI call skipped to stay within token budget</span>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% else %}
+            <p class="no-data">No agent insights available.</p>
+            {% endif %}
+        </div>
+
+        <!-- Panel 3: Supplier Recommendations -->
+        <div class="insight-panel">
+            <h3 class="panel-title">🛒 Supplier Recommendations</h3>
+            
+            {% if insight.recipe_forecast %}
+            <div class="forecast-line">
+                <p>
+                    {% if insight.recipe_forecast.avg_daily_demand %}
+                    Based on order trends: ~<strong>{{ "%.1f" | format(insight.recipe_forecast.avg_daily_demand) }}</strong> units/day needed. 
+                    Projected 7-day demand: ~<strong>{{ "%.1f" | format(insight.recipe_forecast.avg_daily_demand * 7) }}</strong> units.
+                    {% else %}
+                    Recipe demand forecast unavailable.
+                    {% endif %}
+                </p>
+            </div>
+            {% endif %}
+
+            <!-- Suppliers -->
+            {% if insight.suppliers %}
+            <div class="suppliers-grid">
+                {% for supplier in insight.suppliers %}
+                <div class="supplier-card">
+                    <div class="supplier-header">
+                        <h4 class="supplier-name">{{ supplier.supplier_name }}</h4>
+                        <div class="match-score">Match: {{ supplier.match_score }}/100</div>
+                    </div>
+
+                    <div class="supplier-content">
+                        <p class="product-name">{{ supplier.product_name }}</p>
+                        
+                        <div class="supplier-details">
+                            <div class="detail-row">
+                                <span class="detail-label">Price:</span>
+                                <span class="detail-value">{{ supplier.price }}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Lead Time:</span>
+                                <span class="detail-value">{{ supplier.lead_time_days }} days</span>
+                            </div>
+                        </div>
+
+                        <!-- Sustainability Score -->
+                        {% if supplier.sustainability_score is not none %}
+                        <div class="sustainability">
+                            <span class="label">Sustainability:</span>
+                            <div class="score-bar">
+                                <div class="score-fill" style="width: {{ supplier.sustainability_score }}%;"></div>
+                            </div>
+                            <span class="score-text">{{ supplier.sustainability_score }}/100</span>
+                        </div>
+                        {% endif %}
+
+                        <!-- Tags -->
+                        {% if supplier.tags %}
+                        <div class="tags-group">
+                            {% for tag in supplier.tags %}
+                            <span class="tag-badge">{{ tag }}</span>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+
+                        <!-- Why Recommended -->
+                        <p class="why-recommended">
+                            <em>{{ supplier.why_recommended }}</em>
+                        </p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p class="no-data">No matching suppliers found in our supplier database.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Divider between items -->
+    {% if not loop.last %}
+    <div class="card-divider"></div>
+    {% endif %}
+
+    {% endfor %}
+</div>
+
+<style>
+/* Insights Page Styles */
+.insights-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.insights-container h1 {
+    color: var(--green-dark);
+    margin-bottom: 8px;
+    font-size: 32px;
+}
+
+.intro-text {
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+    font-size: 14px;
+}
+
+/* Success Panel (Empty State) */
+.success-panel {
+    background: rgba(47, 111, 106, 0.1);
+    border: 2px solid rgba(47, 111, 106, 0.35);
+    border-radius: 8px;
+    padding: 40px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.success-icon {
+    font-size: 48px;
+}
+
+.success-content h2 {
+    color: var(--green-dark);
+    margin: 0 0 8px 0;
+    font-size: 20px;
+}
+
+.success-content p {
+    color: var(--text-primary);
+    margin: 0 0 16px 0;
+}
+
+/* Insight Card */
+.insight-card {
+    background: var(--surface-card);
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    margin-bottom: 24px;
+}
+
+.card-header {
+    background: linear-gradient(135deg, #111827 0%, var(--green-dark) 100%);
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.header-left {
+    flex: 1;
+}
+
+.item-name {
+    margin: 0 0 12px 0;
+    font-size: 22px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.header-meta {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.stock-info {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+    color: #ffffff;
+}
+
+.header-right {
+    text-align: right;
+}
+
+/* Insight Panels */
+.insight-panel {
+    padding: 24px;
+    border-top: 1px solid var(--border);
+}
+
+.insight-panel:first-of-type {
+    border-top: none;
+}
+
+.panel-title {
+    color: var(--green-dark);
+    margin: 0 0 16px 0;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+/* Panel 1: Classical AI Analysis */
+.panel-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.prediction-column,
+.reconciliation-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.prediction-section h4,
+.reconciliation-column h4 {
+    color: var(--text-primary);
+    margin: 0 0 12px 0;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.prediction-line {
+    display: flex;
+    justify-content: space-between;
+    margin: 8px 0;
+    font-size: 13px;
+}
+
+.prediction-line .label {
+    color: var(--text-secondary);
+}
+
+.prediction-line .value {
+    font-weight: 600;
+    color: var(--green-dark);
+}
+
+.prediction-line .unavailable {
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+.badge-status-reorder {
+    background-color: var(--red);
+    color: #fff;
+}
+
+.badge-status-expiry {
+    background-color: var(--amber);
+    color: #fff;
+}
+
+.badge-status-stable {
+    background-color: var(--green-mid);
+    color: #fff;
+}
+
+.badge-status-default {
+    background-color: #334155;
+    color: #fff;
+}
+
+.confidence-badge {
+    margin-top: 12px;
+}
+
+.confidence {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.confidence.high {
+    background-color: rgba(47, 111, 106, 0.12);
+    color: var(--green-dark);
+}
+
+.confidence.medium {
+    background-color: rgba(183, 121, 31, 0.16);
+    color: #6b3f0f;
+}
+
+.confidence.low {
+    background-color: #fee2e2;
+    color: #7f1d1d;
+}
+
+.confidence.insufficient {
+    background-color: #e5e7eb;
+    color: var(--text-secondary);
+}
+
+/* Reconciliation Table */
+.table-responsive {
+    overflow-x: auto;
+}
+
+.reconciliation-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+.reconciliation-table th {
+    background-color: var(--surface-muted);
+    color: var(--text-primary);
+    padding: 10px 8px;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border);
+}
+
+.reconciliation-table td {
+    padding: 10px 8px;
+    border-bottom: 1px solid var(--border);
+}
+
+.cell-date {
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.cell-number {
+    text-align: right;
+    color: var(--text-primary);
+}
+
+.cell-flag {
+    text-align: center;
+}
+
+.row-flagged {
+    background-color: rgba(183, 121, 31, 0.14);
+}
+
+.flag-badge {
+    background-color: var(--amber);
+    color: #fff;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.flag-ok {
+    color: var(--green-mid);
+    font-weight: 600;
+}
+
+/* Panel 2: AI Agent Insights */
+.agent-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.agent-insights {
+    margin: 0;
+    padding: 16px;
+    background: var(--surface-muted);
+    border-left: 4px solid var(--green-dark);
+    border-radius: 4px;
+    color: var(--text-primary);
+    line-height: 1.6;
+    font-size: 13px;
+}
+
+/* Markdown content styling within agent-insights */
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4 {
+    margin: 12px 0 8px 0;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.markdown-content h2 {
+    font-size: 15px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 6px;
+}
+
+.markdown-content h3 {
+    font-size: 14px;
+}
+
+.markdown-content h4 {
+    font-size: 13px;
+}
+
+.markdown-content ul,
+.markdown-content ol {
+    margin: 8px 0;
+    padding-left: 24px;
+}
+
+.markdown-content li {
+    margin: 4px 0;
+}
+
+.markdown-content p {
+    margin: 6px 0;
+}
+
+.markdown-content strong,
+.markdown-content strong b {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.markdown-content em,
+.markdown-content i {
+    font-style: italic;
+}
+
+.markdown-content code {
+    background: var(--surface-lighter);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: monospace;
+    font-size: 12px;
+}
+
+.markdown-content pre {
+    background: var(--surface-lighter);
+    padding: 10px;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-family: monospace;
+    font-size: 12px;
+    margin: 8px 0;
+}
+
+.agent-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.agent-metadata {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    padding: 8px 12px;
+    border-radius: 4px;
+}
+
+.agent-metadata.ai {
+    background-color: #1e3a8a;
+    color: #ffffff;
+}
+
+.agent-metadata.fallback {
+    background-color: #e5e7eb;
+    color: var(--text-secondary);
+}
+
+.agent-metadata.cache {
+    background-color: #dbeafe;
+    color: #1e3a8a;
+}
+
+.agent-metadata.budget {
+    background-color: #ffedd5;
+    color: #9a3412;
+}
+
+.metadata-icon {
+    font-size: 14px;
+}
+
+.agent-error-note {
+    font-size: 12px;
+    color: #7f1d1d;
+    background: #fee2e2;
+    border: 1px solid #fecaca;
+    border-radius: 4px;
+    padding: 6px 8px;
+}
+
+/* Panel 3: Supplier Recommendations */
+.forecast-line {
+    margin-bottom: 16px;
+    padding: 12px;
+    background: rgba(47, 111, 106, 0.1);
+    border-left: 3px solid var(--green-mid);
+    border-radius: 4px;
+}
+
+.forecast-line p {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.suppliers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+}
+
+.supplier-card {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.supplier-header {
+    background-color: var(--surface-muted);
+    padding: 12px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.supplier-name {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.match-score {
+    background-color: var(--green-mid);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.supplier-content {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.product-name {
+    margin: 0;
+    color: var(--green-dark);
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.supplier-details {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+}
+
+.detail-label {
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.detail-value {
+    color: var(--text-primary);
+}
+
+.sustainability {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+}
+
+.sustainability .label {
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.score-bar {
+    flex: 1;
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.score-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--green-mid), #255d59);
+}
+
+.score-text {
+    color: var(--text-secondary);
+    font-size: 11px;
+}
+
+.tags-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.tag-badge {
+    background-color: #1e3a8a;
+    color: #ffffff;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.why-recommended {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+/* Card Divider */
+.card-divider {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 32px 0;
+}
+
+/* No Data Message */
+.no-data {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-style: italic;
+}
+
+/* Button */
+.button {
+    display: inline-block;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.button-primary {
+    background-color: var(--green-mid);
+    color: white;
+}
+
+.button-primary:hover {
+    opacity: 0.9;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .panel-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .card-header {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .suppliers-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .insights-container h1 {
+        font-size: 24px;
+    }
+
+    .card-header {
+        padding: 16px;
+    }
+
+    .item-name {
+        font-size: 18px;
+    }
+
+    .insight-panel {
+        padding: 16px;
+    }
+
+    .reconciliation-table {
+        font-size: 11px;
+    }
+
+    .reconciliation-table th,
+    .reconciliation-table td {
+        padding: 8px 6px;
+    }
+
+    .agent-insights {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .insights-container {
+        padding: 12px;
+    }
+
+    .insights-container h1 {
+        font-size: 20px;
+    }
+
+    .header-meta {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .card-header {
+        padding: 12px;
+    }
+
+    .insight-panel {
+        padding: 12px;
+    }
+
+    .panel-title {
+        font-size: 14px;
+    }
+
+    .supplier-header {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .match-score {
+        align-self: flex-start;
+    }
+}
+</style>
+{% endblock %}

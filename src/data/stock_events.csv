@@ -1,0 +1,729 @@
+event_id,item_id,date,event_type,quantity,notes
+188,015,2025-09-04,received,1.05,Hazelnut syrup top-up
+119,005,2025-09-04,received,500.0,Monthly disposables bulk order
+114,004,2025-09-04,received,3.0,Syrup carton received
+179,011,2025-09-04,remaining,0.4,
+180,011,2025-09-04,received,1.1,Espresso bean replenishment
+1,001,2025-09-05,received,5.0,Weekly roaster delivery
+155,009,2025-09-05,received,5.0,Baking supplies delivery
+186,014,2025-09-05,received,1.7,Almond milk restock
+189,015,2025-09-06,remaining,3.35,EOD hazelnut syrup count
+187,014,2025-09-06,remaining,6.88,EOD almond milk count
+185,013,2025-09-06,remaining,5.04,EOD condensed milk count
+183,012,2025-09-06,remaining,6.21,EOD fresh cream count
+37,002,2025-09-07,remaining,4.8,EOD fridge count
+198,015,2025-09-08,received,0.9,Hazelnut syrup top-up
+190,011,2025-09-08,received,0.95,Espresso bean replenishment
+184,013,2025-09-08,received,1.5,Condensed milk refill
+182,012,2025-09-08,received,2.05,Fresh cream supplier delivery
+181,011,2025-09-08,remaining,3.56,EOD espresso bean count
+36,002,2025-09-08,received,10.0,Morning milk delivery
+165,010,2025-09-08,received,1.0,Spice vendor delivery
+146,008,2025-09-08,received,4.0,Housekeeping supplies received
+135,007,2025-09-08,received,120.0,Tea supplier restock
+125,006,2025-09-09,received,8.0,Dry goods delivery
+2,001,2025-09-09,remaining,4.6,EOD shelf count
+97,003,2025-09-09,received,6.0,Alt-milk supplier drop
+195,013,2025-09-10,remaining,5.96,EOD condensed milk count
+199,015,2025-09-10,remaining,4.13,EOD hazelnut syrup count
+192,012,2025-09-10,received,1.9,Fresh cream supplier delivery
+193,012,2025-09-10,remaining,7.75,EOD fresh cream count
+197,014,2025-09-10,remaining,8.17,EOD almond milk count
+194,013,2025-09-11,received,1.2,Condensed milk refill
+196,014,2025-09-11,received,1.55,Almond milk restock
+191,011,2025-09-12,remaining,4.35,EOD espresso bean count
+205,013,2025-09-14,remaining,6.99,EOD condensed milk count
+39,002,2025-09-14,remaining,10.0,EOD fridge count
+203,012,2025-09-14,remaining,9.17,EOD fresh cream count
+207,014,2025-09-14,remaining,9.49,EOD almond milk count
+209,015,2025-09-14,remaining,4.79,EOD hazelnut syrup count
+200,011,2025-09-15,received,1.0,Espresso bean replenishment
+3,001,2025-09-15,remaining,4.22,EOD shelf count
+38,002,2025-09-15,received,10.0,Morning milk delivery
+202,012,2025-09-15,received,1.8,Fresh cream supplier delivery
+204,013,2025-09-15,received,1.25,Condensed milk refill
+206,014,2025-09-15,received,1.6,Almond milk restock
+208,015,2025-09-15,received,0.8,Hazelnut syrup top-up
+201,011,2025-09-16,remaining,5.17,EOD espresso bean count
+103,003,2025-09-16,remaining,5.4,EOD alt-milk count
+218,015,2025-09-17,received,0.85,Hazelnut syrup top-up
+210,011,2025-09-17,received,0.9,Espresso bean replenishment
+212,012,2025-09-18,received,1.85,Fresh cream supplier delivery
+213,012,2025-09-18,remaining,10.7,EOD fresh cream count
+214,013,2025-09-18,received,1.3,Condensed milk refill
+215,013,2025-09-18,remaining,8.05,EOD condensed milk count
+217,014,2025-09-18,remaining,10.69,EOD almond milk count
+219,015,2025-09-18,remaining,5.48,EOD hazelnut syrup count
+216,014,2025-09-19,received,1.5,Almond milk restock
+4,001,2025-09-20,remaining,3.8,EOD shelf count
+41,002,2025-09-20,remaining,14.4,EOD fridge count
+211,011,2025-09-20,remaining,5.87,EOD espresso bean count
+223,012,2025-09-22,remaining,12.26,EOD fresh cream count
+222,012,2025-09-22,received,1.9,Fresh cream supplier delivery
+220,011,2025-09-22,received,0.95,Espresso bean replenishment
+225,013,2025-09-22,remaining,8.99,EOD condensed milk count
+226,014,2025-09-22,received,1.55,Almond milk restock
+227,014,2025-09-22,remaining,11.92,EOD almond milk count
+228,015,2025-09-22,received,0.9,Hazelnut syrup top-up
+229,015,2025-09-22,remaining,6.28,EOD hazelnut syrup count
+40,002,2025-09-22,received,10.0,Morning milk delivery
+224,013,2025-09-22,received,1.2,Condensed milk refill
+221,011,2025-09-24,remaining,6.68,EOD espresso bean count
+232,012,2025-09-24,received,1.8,Fresh cream supplier delivery
+138,007,2025-09-24,remaining,210.0,EOD tea bin count
+5,001,2025-09-25,remaining,3.44,EOD shelf count
+234,013,2025-09-25,received,1.25,Condensed milk refill
+230,011,2025-09-25,received,1.0,Espresso bean replenishment
+156,009,2025-09-25,received,5.0,Baking supplies delivery
+157,009,2025-09-26,remaining,9.2,EOD dry storage count
+167,010,2025-09-26,remaining,1.8,EOD spice drawer count
+239,015,2025-09-26,remaining,6.96,EOD hazelnut syrup count
+238,015,2025-09-26,received,0.8,Hazelnut syrup top-up
+128,006,2025-09-26,remaining,18.5,EOD dry storage count
+235,013,2025-09-26,remaining,9.96,EOD condensed milk count
+233,012,2025-09-26,remaining,13.7,EOD fresh cream count
+237,014,2025-09-26,remaining,13.26,EOD almond milk count
+104,003,2025-09-27,remaining,5.0,EOD alt-milk count
+43,002,2025-09-27,remaining,20.1,EOD fridge count
+231,011,2025-09-28,remaining,7.52,EOD espresso bean count
+148,008,2025-09-28,remaining,7.6,EOD housekeeping shelf count
+166,010,2025-09-29,received,1.0,Spice vendor delivery
+9,001,2025-09-29,received,5.0,Weekly roaster delivery
+42,002,2025-09-29,received,10.0,Morning milk delivery
+236,014,2025-09-29,received,1.6,Almond milk restock
+244,013,2025-09-29,received,1.5,Condensed milk refill
+136,007,2025-09-29,received,120.0,Tea supplier restock
+126,006,2025-09-29,received,8.0,Dry goods delivery
+240,011,2025-09-29,received,1.1,Espresso bean replenishment
+147,008,2025-09-29,received,4.0,Housekeeping supplies received
+6,001,2025-09-30,remaining,3.0,EOD shelf count
+248,015,2025-09-30,received,1.05,Hazelnut syrup top-up
+242,012,2025-09-30,received,2.05,Fresh cream supplier delivery
+98,003,2025-09-30,received,6.0,Alt-milk supplier drop
+243,012,2025-09-30,remaining,15.37,EOD fresh cream count
+245,013,2025-09-30,remaining,11.24,EOD condensed milk count
+247,014,2025-09-30,remaining,14.68,EOD almond milk count
+249,015,2025-09-30,remaining,7.87,EOD hazelnut syrup count
+241,011,2025-10-01,remaining,8.44,EOD espresso bean count
+246,014,2025-10-01,received,1.7,Almond milk restock
+250,011,2025-10-02,received,0.95,Espresso bean replenishment
+258,015,2025-10-02,received,0.9,Hazelnut syrup top-up
+45,002,2025-10-03,remaining,24.1,EOD fridge count
+252,012,2025-10-03,received,1.9,Fresh cream supplier delivery
+255,013,2025-10-04,remaining,12.2,EOD condensed milk count
+253,012,2025-10-04,remaining,16.95,EOD fresh cream count
+257,014,2025-10-04,remaining,15.93,EOD almond milk count
+259,015,2025-10-04,remaining,8.61,EOD hazelnut syrup count
+251,011,2025-10-05,remaining,9.19,EOD espresso bean count
+260,011,2025-10-06,received,1.0,Espresso bean replenishment
+254,013,2025-10-06,received,1.2,Condensed milk refill
+44,002,2025-10-06,received,10.0,Morning milk delivery
+262,012,2025-10-06,received,1.8,Fresh cream supplier delivery
+268,015,2025-10-06,received,0.8,Hazelnut syrup top-up
+7,001,2025-10-06,remaining,2.61,EOD shelf count
+256,014,2025-10-06,received,1.55,Almond milk restock
+269,015,2025-10-08,remaining,9.31,EOD hazelnut syrup count
+267,014,2025-10-08,remaining,17.21,EOD almond milk count
+266,014,2025-10-08,received,1.6,Almond milk restock
+265,013,2025-10-08,remaining,13.19,EOD condensed milk count
+263,012,2025-10-08,remaining,18.41,EOD fresh cream count
+264,013,2025-10-08,received,1.25,Condensed milk refill
+261,011,2025-10-09,remaining,10.05,EOD espresso bean count
+47,002,2025-10-10,remaining,29.6,EOD fridge count
+8,001,2025-10-11,remaining,2.2,EOD shelf count
+277,014,2025-10-12,remaining,18.45,EOD almond milk count
+275,013,2025-10-12,remaining,14.21,EOD condensed milk count
+279,015,2025-10-12,remaining,10.04,EOD hazelnut syrup count
+273,012,2025-10-12,remaining,19.9,EOD fresh cream count
+274,013,2025-10-13,received,1.3,Condensed milk refill
+270,011,2025-10-13,received,0.9,Espresso bean replenishment
+276,014,2025-10-13,received,1.5,Almond milk restock
+272,012,2025-10-13,received,1.85,Fresh cream supplier delivery
+120,005,2025-10-13,remaining,480.0,Weekly storeroom count
+278,015,2025-10-13,received,0.85,Hazelnut syrup top-up
+271,011,2025-10-13,remaining,10.79,EOD espresso bean count
+139,007,2025-10-13,remaining,186.0,EOD tea bin count
+46,002,2025-10-13,received,10.0,Morning milk delivery
+280,011,2025-10-15,received,0.95,Espresso bean replenishment
+282,012,2025-10-15,received,1.9,Fresh cream supplier delivery
+285,013,2025-10-16,remaining,15.19,EOD condensed milk count
+288,015,2025-10-16,received,0.9,Hazelnut syrup top-up
+289,015,2025-10-16,remaining,10.8,EOD hazelnut syrup count
+283,012,2025-10-16,remaining,21.42,EOD fresh cream count
+49,002,2025-10-16,remaining,34.5,EOD fridge count
+287,014,2025-10-16,remaining,19.72,EOD almond milk count
+284,013,2025-10-16,received,1.2,Condensed milk refill
+286,014,2025-10-17,received,1.55,Almond milk restock
+281,011,2025-10-17,remaining,11.56,EOD espresso bean count
+168,010,2025-10-18,remaining,1.6,EOD spice drawer count
+129,006,2025-10-18,remaining,16.9,EOD dry storage count
+158,009,2025-10-18,remaining,8.6,EOD dry storage count
+299,015,2025-10-20,remaining,11.44,EOD hazelnut syrup count
+298,015,2025-10-20,received,0.8,Hazelnut syrup top-up
+17,001,2025-10-20,received,5.0,Weekly roaster delivery
+297,014,2025-10-20,remaining,21.02,EOD almond milk count
+296,014,2025-10-20,received,1.6,Almond milk restock
+105,003,2025-10-20,remaining,10.2,EOD alt-milk count
+295,013,2025-10-20,remaining,16.2,EOD condensed milk count
+137,007,2025-10-20,received,120.0,Tea supplier restock
+48,002,2025-10-20,received,10.0,Morning milk delivery
+293,012,2025-10-20,remaining,22.9,EOD fresh cream count
+290,011,2025-10-20,received,1.0,Espresso bean replenishment
+127,006,2025-10-20,received,8.0,Dry goods delivery
+292,012,2025-10-20,received,1.8,Fresh cream supplier delivery
+99,003,2025-10-21,received,6.0,Alt-milk supplier drop
+294,013,2025-10-21,received,1.25,Condensed milk refill
+291,011,2025-10-21,remaining,12.36,EOD espresso bean count
+10,001,2025-10-22,remaining,6.83,EOD shelf count
+300,011,2025-10-22,received,1.1,Espresso bean replenishment
+307,014,2025-10-23,remaining,22.4,EOD almond milk count
+115,004,2025-10-23,remaining,2.8,EOD shelf count
+303,012,2025-10-23,remaining,24.61,EOD fresh cream count
+51,002,2025-10-23,remaining,36.7,EOD fridge count - spillage/waste noted
+149,008,2025-10-23,remaining,7.1,EOD housekeeping shelf count
+305,013,2025-10-23,remaining,17.44,EOD condensed milk count
+309,015,2025-10-23,remaining,12.39,EOD hazelnut syrup count
+302,012,2025-10-24,received,2.05,Fresh cream supplier delivery
+308,015,2025-10-24,received,1.05,Hazelnut syrup top-up
+306,014,2025-10-24,received,1.7,Almond milk restock
+301,011,2025-10-25,remaining,13.32,EOD espresso bean count
+313,012,2025-10-27,remaining,26.15,EOD fresh cream count
+315,013,2025-10-27,remaining,18.36,EOD condensed milk count
+317,014,2025-10-27,remaining,23.69,EOD almond milk count
+318,015,2025-10-27,received,0.9,Hazelnut syrup top-up
+319,015,2025-10-27,remaining,13.17,EOD hazelnut syrup count
+310,011,2025-10-27,received,0.95,Espresso bean replenishment
+11,001,2025-10-27,remaining,6.4,EOD shelf count
+304,013,2025-10-27,received,1.5,Condensed milk refill
+50,002,2025-10-27,received,10.0,Morning milk delivery
+312,012,2025-10-28,received,1.9,Fresh cream supplier delivery
+311,011,2025-10-29,remaining,14.11,EOD espresso bean count
+314,013,2025-10-29,received,1.2,Condensed milk refill
+316,014,2025-10-29,received,1.55,Almond milk restock
+320,011,2025-10-30,received,1.0,Espresso bean replenishment
+328,015,2025-10-30,received,0.8,Hazelnut syrup top-up
+53,002,2025-10-30,remaining,41.3,EOD fridge count
+322,012,2025-10-31,received,1.8,Fresh cream supplier delivery
+325,013,2025-10-31,remaining,19.39,EOD condensed milk count
+327,014,2025-10-31,remaining,25.01,EOD almond milk count
+329,015,2025-10-31,remaining,13.83,EOD hazelnut syrup count
+324,013,2025-10-31,received,1.25,Condensed milk refill
+323,012,2025-10-31,remaining,27.57,EOD fresh cream count
+12,001,2025-11-01,remaining,6.05,EOD shelf count
+106,003,2025-11-01,remaining,9.6,EOD alt-milk count
+140,007,2025-11-02,remaining,162.0,EOD tea bin count
+321,011,2025-11-02,remaining,14.93,EOD espresso bean count
+338,015,2025-11-03,received,0.85,Hazelnut syrup top-up
+52,002,2025-11-03,received,10.0,Morning milk delivery
+326,014,2025-11-03,received,1.6,Almond milk restock
+330,011,2025-11-03,received,0.9,Espresso bean replenishment
+337,014,2025-11-04,remaining,26.21,EOD almond milk count
+335,013,2025-11-04,remaining,20.45,EOD condensed milk count
+333,012,2025-11-04,remaining,29.1,EOD fresh cream count
+339,015,2025-11-04,remaining,14.52,EOD hazelnut syrup count
+55,002,2025-11-05,remaining,46.6,EOD fridge count
+334,013,2025-11-05,received,1.3,Condensed milk refill
+332,012,2025-11-05,received,1.85,Fresh cream supplier delivery
+336,014,2025-11-06,received,1.5,Almond milk restock
+331,011,2025-11-06,remaining,15.63,EOD espresso bean count
+13,001,2025-11-07,remaining,5.65,EOD shelf count
+25,001,2025-11-07,received,5.0,Weekly roaster delivery
+159,009,2025-11-08,remaining,7.8,EOD dry storage count
+169,010,2025-11-08,remaining,1.4,EOD spice drawer count
+349,015,2025-11-08,remaining,15.32,EOD hazelnut syrup count
+130,006,2025-11-08,remaining,14.8,EOD dry storage count
+347,014,2025-11-08,remaining,27.44,EOD almond milk count
+343,012,2025-11-08,remaining,30.66,EOD fresh cream count
+345,013,2025-11-08,remaining,21.39,EOD condensed milk count
+340,011,2025-11-10,received,0.95,Espresso bean replenishment
+341,011,2025-11-10,remaining,16.44,EOD espresso bean count
+342,012,2025-11-10,received,1.9,Fresh cream supplier delivery
+344,013,2025-11-10,received,1.2,Condensed milk refill
+100,003,2025-11-10,received,6.0,Alt-milk supplier drop
+54,002,2025-11-10,received,10.0,Morning milk delivery
+346,014,2025-11-10,received,1.55,Almond milk restock
+348,015,2025-11-10,received,0.9,Hazelnut syrup top-up
+357,014,2025-11-12,remaining,28.78,EOD almond milk count
+359,015,2025-11-12,remaining,16.0,EOD hazelnut syrup count
+57,002,2025-11-12,remaining,50.7,EOD fridge count
+350,011,2025-11-12,received,1.0,Espresso bean replenishment
+355,013,2025-11-12,remaining,22.36,EOD condensed milk count
+14,001,2025-11-12,remaining,5.23,EOD shelf count
+353,012,2025-11-12,remaining,32.1,EOD fresh cream count
+352,012,2025-11-12,received,1.8,Fresh cream supplier delivery
+358,015,2025-11-13,received,0.8,Hazelnut syrup top-up
+356,014,2025-11-14,received,1.6,Almond milk restock
+354,013,2025-11-14,received,1.25,Condensed milk refill
+351,011,2025-11-14,remaining,17.28,EOD espresso bean count
+363,012,2025-11-16,remaining,33.77,EOD fresh cream count
+365,013,2025-11-16,remaining,23.64,EOD condensed milk count
+367,014,2025-11-16,remaining,30.2,EOD almond milk count
+369,015,2025-11-16,remaining,16.91,EOD hazelnut syrup count
+368,015,2025-11-17,received,1.05,Hazelnut syrup top-up
+360,011,2025-11-17,received,1.1,Espresso bean replenishment
+362,012,2025-11-17,received,2.05,Fresh cream supplier delivery
+361,011,2025-11-17,remaining,18.2,EOD espresso bean count
+364,013,2025-11-17,received,1.5,Condensed milk refill
+56,002,2025-11-17,received,10.0,Morning milk delivery
+150,008,2025-11-17,remaining,6.5,EOD housekeeping shelf count
+15,001,2025-11-17,remaining,4.85,EOD shelf count
+366,014,2025-11-18,received,1.7,Almond milk restock
+59,002,2025-11-18,remaining,56.3,EOD fridge count
+370,011,2025-11-19,received,0.95,Espresso bean replenishment
+379,015,2025-11-20,remaining,17.65,EOD hazelnut syrup count
+378,015,2025-11-20,received,0.9,Hazelnut syrup top-up
+377,014,2025-11-20,remaining,31.45,EOD almond milk count
+375,013,2025-11-20,remaining,24.6,EOD condensed milk count
+373,012,2025-11-20,remaining,35.35,EOD fresh cream count
+372,012,2025-11-20,received,1.9,Fresh cream supplier delivery
+374,013,2025-11-21,received,1.2,Condensed milk refill
+371,011,2025-11-21,remaining,18.95,EOD espresso bean count
+121,005,2025-11-21,remaining,410.0,Weekly storeroom count
+16,001,2025-11-22,remaining,4.41,EOD shelf count
+387,014,2025-11-24,remaining,32.73,EOD almond milk count
+376,014,2025-11-24,received,1.55,Almond milk restock
+107,003,2025-11-24,remaining,15.0,EOD alt-milk count
+58,002,2025-11-24,received,10.0,Morning milk delivery
+389,015,2025-11-24,remaining,18.35,EOD hazelnut syrup count
+380,011,2025-11-24,received,1.0,Espresso bean replenishment
+382,012,2025-11-24,received,1.8,Fresh cream supplier delivery
+383,012,2025-11-24,remaining,36.81,EOD fresh cream count
+385,013,2025-11-24,remaining,25.59,EOD condensed milk count
+61,002,2025-11-25,remaining,61.0,EOD fridge count
+381,011,2025-11-25,remaining,19.81,EOD espresso bean count
+384,013,2025-11-25,received,1.25,Condensed milk refill
+388,015,2025-11-25,received,0.8,Hazelnut syrup top-up
+390,011,2025-11-26,received,0.9,Espresso bean replenishment
+386,014,2025-11-26,received,1.6,Almond milk restock
+398,015,2025-11-27,received,0.85,Hazelnut syrup top-up
+392,012,2025-11-28,received,1.85,Fresh cream supplier delivery
+393,012,2025-11-28,remaining,38.3,EOD fresh cream count
+394,013,2025-11-28,received,1.3,Condensed milk refill
+395,013,2025-11-28,remaining,26.61,EOD condensed milk count
+396,014,2025-11-28,received,1.5,Almond milk restock
+399,015,2025-11-28,remaining,19.08,EOD hazelnut syrup count
+397,014,2025-11-28,remaining,33.97,EOD almond milk count
+391,011,2025-11-29,remaining,20.55,EOD espresso bean count
+160,009,2025-11-30,remaining,7.1,EOD dry storage count
+63,002,2025-12-01,remaining,62.9,EOD fridge count - spillage/waste noted
+60,002,2025-12-01,received,10.0,Morning milk delivery
+33,001,2025-12-01,received,5.0,Weekly roaster delivery
+101,003,2025-12-01,received,6.0,Alt-milk supplier drop
+408,015,2025-12-01,received,0.9,Hazelnut syrup top-up
+400,011,2025-12-02,received,0.95,Espresso bean replenishment
+402,012,2025-12-02,received,1.9,Fresh cream supplier delivery
+403,012,2025-12-02,remaining,39.82,EOD fresh cream count
+405,013,2025-12-02,remaining,27.59,EOD condensed milk count
+407,014,2025-12-02,remaining,35.24,EOD almond milk count
+409,015,2025-12-02,remaining,19.84,EOD hazelnut syrup count
+401,011,2025-12-03,remaining,21.32,EOD espresso bean count
+18,001,2025-12-03,remaining,9.05,EOD shelf count
+404,013,2025-12-04,received,1.2,Condensed milk refill
+406,014,2025-12-04,received,1.55,Almond milk restock
+108,003,2025-12-05,remaining,14.4,EOD alt-milk count
+412,012,2025-12-05,received,1.8,Fresh cream supplier delivery
+419,015,2025-12-06,remaining,20.48,EOD hazelnut syrup count
+415,013,2025-12-06,remaining,28.6,EOD condensed milk count
+417,014,2025-12-06,remaining,36.54,EOD almond milk count
+413,012,2025-12-06,remaining,41.3,EOD fresh cream count
+411,011,2025-12-07,remaining,22.12,EOD espresso bean count
+414,013,2025-12-08,received,1.25,Condensed milk refill
+416,014,2025-12-08,received,1.6,Almond milk restock
+19,001,2025-12-08,remaining,8.64,EOD shelf count
+418,015,2025-12-08,received,0.8,Hazelnut syrup top-up
+410,011,2025-12-08,received,1.0,Espresso bean replenishment
+62,002,2025-12-08,received,10.0,Morning milk delivery
+65,002,2025-12-08,remaining,68.0,EOD fridge count
+429,015,2025-12-10,remaining,21.43,EOD hazelnut syrup count
+420,011,2025-12-10,received,1.1,Espresso bean replenishment
+427,014,2025-12-10,remaining,37.92,EOD almond milk count
+423,012,2025-12-10,remaining,43.01,EOD fresh cream count
+425,013,2025-12-10,remaining,29.84,EOD condensed milk count
+141,007,2025-12-11,remaining,258.0,EOD tea bin count
+421,011,2025-12-11,remaining,23.08,EOD espresso bean count
+422,012,2025-12-11,received,2.05,Fresh cream supplier delivery
+151,008,2025-12-11,remaining,6.0,EOD housekeeping shelf count
+116,004,2025-12-11,remaining,2.5,EOD shelf count
+428,015,2025-12-11,received,1.05,Hazelnut syrup top-up
+424,013,2025-12-12,received,1.5,Condensed milk refill
+426,014,2025-12-12,received,1.7,Almond milk restock
+433,012,2025-12-14,remaining,44.55,EOD fresh cream count
+435,013,2025-12-14,remaining,30.76,EOD condensed milk count
+20,001,2025-12-14,remaining,8.25,EOD shelf count
+439,015,2025-12-14,remaining,22.21,EOD hazelnut syrup count
+437,014,2025-12-14,remaining,39.21,EOD almond milk count
+67,002,2025-12-14,remaining,72.3,EOD fridge count
+432,012,2025-12-15,received,1.9,Fresh cream supplier delivery
+430,011,2025-12-15,received,0.95,Espresso bean replenishment
+436,014,2025-12-15,received,1.55,Almond milk restock
+438,015,2025-12-15,received,0.9,Hazelnut syrup top-up
+64,002,2025-12-15,received,10.0,Morning milk delivery
+431,011,2025-12-15,remaining,23.87,EOD espresso bean count
+434,013,2025-12-16,received,1.2,Condensed milk refill
+442,012,2025-12-17,received,1.8,Fresh cream supplier delivery
+440,011,2025-12-17,received,1.0,Espresso bean replenishment
+443,012,2025-12-18,remaining,45.97,EOD fresh cream count
+449,015,2025-12-18,remaining,22.87,EOD hazelnut syrup count
+445,013,2025-12-18,remaining,31.79,EOD condensed milk count
+448,015,2025-12-18,received,0.8,Hazelnut syrup top-up
+446,014,2025-12-18,received,1.6,Almond milk restock
+447,014,2025-12-18,remaining,40.53,EOD almond milk count
+444,013,2025-12-19,received,1.25,Condensed milk refill
+21,001,2025-12-19,remaining,7.8,EOD shelf count
+441,011,2025-12-19,remaining,24.69,EOD espresso bean count
+131,006,2025-12-22,remaining,20.6,EOD dry storage count
+459,015,2025-12-22,remaining,23.56,EOD hazelnut syrup count
+458,015,2025-12-22,received,0.85,Hazelnut syrup top-up
+457,014,2025-12-22,remaining,41.73,EOD almond milk count
+455,013,2025-12-22,remaining,32.85,EOD condensed milk count
+66,002,2025-12-22,received,10.0,Morning milk delivery
+453,012,2025-12-22,remaining,47.5,EOD fresh cream count
+450,011,2025-12-22,received,0.9,Espresso bean replenishment
+170,010,2025-12-22,remaining,2.3,EOD spice drawer count
+178,001,2025-12-22,received,19.0,
+102,003,2025-12-22,received,6.0,Alt-milk supplier drop
+452,012,2025-12-22,received,1.85,Fresh cream supplier delivery
+451,011,2025-12-23,remaining,25.39,EOD espresso bean count
+454,013,2025-12-23,received,1.3,Condensed milk refill
+456,014,2025-12-23,received,1.5,Almond milk restock
+22,001,2025-12-24,remaining,7.43,EOD shelf count
+460,011,2025-12-24,received,0.95,Espresso bean replenishment
+70,002,2025-12-24,remaining,82.7,EOD fridge count
+468,015,2025-12-25,received,0.9,Hazelnut syrup top-up
+465,013,2025-12-26,remaining,33.79,EOD condensed milk count
+467,014,2025-12-26,remaining,42.96,EOD almond milk count
+463,012,2025-12-26,remaining,49.06,EOD fresh cream count
+469,015,2025-12-26,remaining,24.36,EOD hazelnut syrup count
+461,011,2025-12-27,remaining,26.2,EOD espresso bean count
+109,003,2025-12-28,remaining,19.8,EOD alt-milk count
+466,014,2025-12-29,received,1.55,Almond milk restock
+470,011,2025-12-29,received,1.0,Espresso bean replenishment
+462,012,2025-12-29,received,1.9,Fresh cream supplier delivery
+68,002,2025-12-29,received,10.0,Morning milk delivery
+464,013,2025-12-29,received,1.2,Condensed milk refill
+23,001,2025-12-30,remaining,7.0,EOD shelf count
+479,015,2025-12-30,remaining,25.04,EOD hazelnut syrup count
+478,015,2025-12-30,received,0.8,Hazelnut syrup top-up
+473,012,2025-12-30,remaining,50.5,EOD fresh cream count
+475,013,2025-12-30,remaining,34.76,EOD condensed milk count
+477,014,2025-12-30,remaining,44.3,EOD almond milk count
+122,005,2025-12-31,remaining,340.0,Weekly storeroom count
+471,011,2025-12-31,remaining,27.04,EOD espresso bean count
+472,012,2025-12-31,received,1.8,Fresh cream supplier delivery
+72,002,2025-12-31,remaining,87.2,EOD fridge count
+474,013,2025-12-31,received,1.25,Condensed milk refill
+142,007,2025-12-31,remaining,231.0,EOD tea bin count
+480,011,2026-01-01,received,1.1,Espresso bean replenishment
+476,014,2026-01-01,received,1.6,Almond milk restock
+485,013,2026-01-03,remaining,36.04,EOD condensed milk count
+487,014,2026-01-03,remaining,45.72,EOD almond milk count
+489,015,2026-01-03,remaining,25.95,EOD hazelnut syrup count
+483,012,2026-01-03,remaining,52.17,EOD fresh cream count
+481,011,2026-01-04,remaining,27.96,EOD espresso bean count
+24,001,2026-01-04,remaining,6.6,EOD shelf count
+484,013,2026-01-05,received,1.5,Condensed milk refill
+482,012,2026-01-05,received,2.05,Fresh cream supplier delivery
+490,011,2026-01-05,received,0.95,Espresso bean replenishment
+488,015,2026-01-05,received,1.05,Hazelnut syrup top-up
+486,014,2026-01-05,received,1.7,Almond milk restock
+69,002,2026-01-05,received,5.0,Midday milk top-up after rush
+74,002,2026-01-06,remaining,93.0,EOD fridge count
+498,015,2026-01-07,received,0.9,Hazelnut syrup top-up
+499,015,2026-01-07,remaining,26.69,EOD hazelnut syrup count
+491,011,2026-01-07,remaining,28.71,EOD espresso bean count
+495,013,2026-01-07,remaining,37.0,EOD condensed milk count
+493,012,2026-01-07,remaining,53.75,EOD fresh cream count
+492,012,2026-01-07,received,1.9,Fresh cream supplier delivery
+497,014,2026-01-07,remaining,46.97,EOD almond milk count
+494,013,2026-01-08,received,1.2,Condensed milk refill
+496,014,2026-01-08,received,1.55,Almond milk restock
+505,013,2026-01-11,remaining,37.99,EOD condensed milk count
+503,012,2026-01-11,remaining,55.21,EOD fresh cream count
+501,011,2026-01-11,remaining,29.57,EOD espresso bean count
+509,015,2026-01-11,remaining,27.39,EOD hazelnut syrup count
+507,014,2026-01-11,remaining,48.25,EOD almond milk count
+508,015,2026-01-12,received,0.8,Hazelnut syrup top-up
+502,012,2026-01-12,received,1.8,Fresh cream supplier delivery
+500,011,2026-01-12,received,1.0,Espresso bean replenishment
+71,002,2026-01-12,received,10.0,Morning milk delivery
+506,014,2026-01-13,received,1.6,Almond milk restock
+504,013,2026-01-13,received,1.25,Condensed milk refill
+171,010,2026-01-13,remaining,2.1,EOD spice drawer count
+76,002,2026-01-13,remaining,97.2,EOD fridge count
+161,009,2026-01-13,remaining,11.6,EOD dry storage count
+132,006,2026-01-13,remaining,18.7,EOD dry storage count
+512,012,2026-01-14,received,1.85,Fresh cream supplier delivery
+26,001,2026-01-14,remaining,11.22,EOD shelf count
+517,014,2026-01-15,remaining,49.49,EOD almond milk count
+510,011,2026-01-15,received,0.9,Espresso bean replenishment
+511,011,2026-01-15,remaining,30.31,EOD espresso bean count
+513,012,2026-01-15,remaining,56.7,EOD fresh cream count
+515,013,2026-01-15,remaining,39.01,EOD condensed milk count
+518,015,2026-01-15,received,0.85,Hazelnut syrup top-up
+519,015,2026-01-15,remaining,28.12,EOD hazelnut syrup count
+523,012,2026-01-19,remaining,58.22,EOD fresh cream count
+78,002,2026-01-19,remaining,102.3,EOD fridge count
+521,011,2026-01-19,remaining,31.08,EOD espresso bean count
+143,007,2026-01-19,remaining,204.0,EOD tea bin count
+522,012,2026-01-19,received,1.9,Fresh cream supplier delivery
+525,013,2026-01-19,remaining,39.99,EOD condensed milk count
+516,014,2026-01-19,received,1.5,Almond milk restock
+514,013,2026-01-19,received,1.3,Condensed milk refill
+73,002,2026-01-19,received,10.0,Morning milk delivery
+520,011,2026-01-19,received,0.95,Espresso bean replenishment
+527,014,2026-01-19,remaining,50.76,EOD almond milk count
+529,015,2026-01-19,remaining,28.88,EOD hazelnut syrup count
+528,015,2026-01-19,received,0.9,Hazelnut syrup top-up
+27,001,2026-01-20,remaining,10.8,EOD shelf count
+110,003,2026-01-20,remaining,24.9,EOD alt-milk count
+526,014,2026-01-21,received,1.55,Almond milk restock
+524,013,2026-01-21,received,1.2,Condensed milk refill
+530,011,2026-01-21,received,1.0,Espresso bean replenishment
+538,015,2026-01-23,received,0.8,Hazelnut syrup top-up
+531,011,2026-01-23,remaining,31.88,EOD espresso bean count
+532,012,2026-01-23,received,1.8,Fresh cream supplier delivery
+533,012,2026-01-23,remaining,59.7,EOD fresh cream count
+535,013,2026-01-23,remaining,41.0,EOD condensed milk count
+539,015,2026-01-23,remaining,29.52,EOD hazelnut syrup count
+537,014,2026-01-23,remaining,52.06,EOD almond milk count
+28,001,2026-01-25,remaining,10.44,EOD shelf count
+75,002,2026-01-26,received,10.0,Morning milk delivery
+548,015,2026-01-26,received,1.05,Hazelnut syrup top-up
+534,013,2026-01-26,received,1.25,Condensed milk refill
+536,014,2026-01-26,received,1.6,Almond milk restock
+80,002,2026-01-26,remaining,107.1,EOD fridge count
+542,012,2026-01-26,received,2.05,Fresh cream supplier delivery
+543,012,2026-01-27,remaining,61.41,EOD fresh cream count
+549,015,2026-01-27,remaining,30.47,EOD hazelnut syrup count
+545,013,2026-01-27,remaining,42.24,EOD condensed milk count
+540,011,2026-01-27,received,1.1,Espresso bean replenishment
+547,014,2026-01-27,remaining,53.44,EOD almond milk count
+541,011,2026-01-27,remaining,32.84,EOD espresso bean count
+544,013,2026-01-28,received,1.5,Condensed milk refill
+546,014,2026-01-28,received,1.7,Almond milk restock
+152,008,2026-01-29,remaining,9.8,EOD housekeeping shelf count
+117,004,2026-01-29,remaining,2.2,EOD shelf count
+553,012,2026-01-30,remaining,62.95,EOD fresh cream count
+555,013,2026-01-30,remaining,43.16,EOD condensed milk count
+557,014,2026-01-30,remaining,54.73,EOD almond milk count
+558,015,2026-01-30,received,0.9,Hazelnut syrup top-up
+559,015,2026-01-30,remaining,31.25,EOD hazelnut syrup count
+29,001,2026-01-30,remaining,10.0,EOD shelf count
+551,011,2026-01-31,remaining,33.63,EOD espresso bean count
+82,002,2026-02-01,remaining,112.6,EOD fridge count
+111,003,2026-02-01,remaining,24.1,EOD alt-milk count
+552,012,2026-02-02,received,1.9,Fresh cream supplier delivery
+554,013,2026-02-02,received,1.2,Condensed milk refill
+550,011,2026-02-02,received,0.95,Espresso bean replenishment
+77,002,2026-02-02,received,10.0,Morning milk delivery
+556,014,2026-02-02,received,1.55,Almond milk restock
+162,009,2026-02-03,remaining,10.7,EOD dry storage count
+565,013,2026-02-03,remaining,44.19,EOD condensed milk count
+133,006,2026-02-03,remaining,17.4,EOD dry storage count
+569,015,2026-02-03,remaining,31.91,EOD hazelnut syrup count
+563,012,2026-02-03,remaining,64.37,EOD fresh cream count
+567,014,2026-02-03,remaining,56.05,EOD almond milk count
+172,010,2026-02-03,remaining,1.9,EOD spice drawer count
+560,011,2026-02-04,received,1.0,Espresso bean replenishment
+562,012,2026-02-04,received,1.8,Fresh cream supplier delivery
+561,011,2026-02-04,remaining,34.45,EOD espresso bean count
+30,001,2026-02-05,remaining,9.61,EOD shelf count
+568,015,2026-02-05,received,0.8,Hazelnut syrup top-up
+566,014,2026-02-05,received,1.6,Almond milk restock
+564,013,2026-02-06,received,1.25,Condensed milk refill
+570,011,2026-02-06,received,0.9,Espresso bean replenishment
+577,014,2026-02-07,remaining,57.25,EOD almond milk count
+579,015,2026-02-07,remaining,32.6,EOD hazelnut syrup count
+575,013,2026-02-07,remaining,45.25,EOD condensed milk count
+573,012,2026-02-07,remaining,65.9,EOD fresh cream count
+123,005,2026-02-08,remaining,265.0,Weekly storeroom count
+571,011,2026-02-08,remaining,35.15,EOD espresso bean count
+84,002,2026-02-08,remaining,115.2,EOD fridge count - spillage/waste noted
+572,012,2026-02-09,received,1.85,Fresh cream supplier delivery
+576,014,2026-02-09,received,1.5,Almond milk restock
+578,015,2026-02-09,received,0.85,Hazelnut syrup top-up
+574,013,2026-02-09,received,1.3,Condensed milk refill
+79,002,2026-02-09,received,10.0,Morning milk delivery
+31,001,2026-02-10,remaining,9.2,EOD shelf count
+580,011,2026-02-10,received,0.95,Espresso bean replenishment
+583,012,2026-02-11,remaining,67.46,EOD fresh cream count
+587,014,2026-02-11,remaining,58.48,EOD almond milk count
+589,015,2026-02-11,remaining,33.4,EOD hazelnut syrup count
+585,013,2026-02-11,remaining,46.19,EOD condensed milk count
+586,014,2026-02-12,received,1.55,Almond milk restock
+581,011,2026-02-12,remaining,35.96,EOD espresso bean count
+584,013,2026-02-12,received,1.2,Condensed milk refill
+582,012,2026-02-13,received,1.9,Fresh cream supplier delivery
+588,015,2026-02-13,received,0.9,Hazelnut syrup top-up
+86,002,2026-02-14,remaining,119.6,EOD fridge count
+595,013,2026-02-15,remaining,47.16,EOD condensed milk count
+32,001,2026-02-15,remaining,8.85,EOD shelf count
+599,015,2026-02-15,remaining,34.08,EOD hazelnut syrup count
+593,012,2026-02-15,remaining,68.9,EOD fresh cream count
+597,014,2026-02-15,remaining,59.82,EOD almond milk count
+590,011,2026-02-16,received,1.0,Espresso bean replenishment
+598,015,2026-02-16,received,0.8,Hazelnut syrup top-up
+81,002,2026-02-16,received,10.0,Morning milk delivery
+592,012,2026-02-16,received,1.8,Fresh cream supplier delivery
+591,011,2026-02-16,remaining,36.8,EOD espresso bean count
+596,014,2026-02-16,received,1.6,Almond milk restock
+594,013,2026-02-18,received,1.25,Condensed milk refill
+600,011,2026-02-18,received,1.1,Espresso bean replenishment
+603,012,2026-02-19,remaining,70.57,EOD fresh cream count
+605,013,2026-02-19,remaining,48.44,EOD condensed milk count
+607,014,2026-02-19,remaining,61.24,EOD almond milk count
+609,015,2026-02-19,remaining,34.99,EOD hazelnut syrup count
+604,013,2026-02-20,received,1.5,Condensed milk refill
+606,014,2026-02-20,received,1.7,Almond milk restock
+608,015,2026-02-20,received,1.05,Hazelnut syrup top-up
+700,018,2026-02-20,received,1.8,Initial stock delivery
+691,017,2026-02-20,received,3.6,Initial stock delivery
+601,011,2026-02-20,remaining,37.72,EOD espresso bean count
+681,016,2026-02-20,received,0.2,Initial stock delivery
+719,020,2026-02-20,received,6.5,Initial stock delivery
+710,019,2026-02-20,received,1.2,Initial stock delivery
+88,002,2026-02-21,remaining,125.3,EOD fridge count
+602,012,2026-02-23,received,2.05,Fresh cream supplier delivery
+720,020,2026-02-23,remaining,5.594,EOD shelf count
+610,011,2026-02-23,received,0.95,Espresso bean replenishment
+611,011,2026-02-23,remaining,38.47,EOD espresso bean count
+682,016,2026-02-23,remaining,0.182,EOD shelf count
+701,018,2026-02-23,remaining,1.759,EOD shelf count
+613,012,2026-02-23,remaining,72.15,EOD fresh cream count
+615,013,2026-02-23,remaining,49.4,EOD condensed milk count
+617,014,2026-02-23,remaining,62.49,EOD almond milk count
+83,002,2026-02-23,received,10.0,Morning milk delivery
+619,015,2026-02-23,remaining,35.73,EOD hazelnut syrup count
+692,017,2026-02-23,remaining,3.447,EOD shelf count
+153,008,2026-02-23,remaining,9.3,EOD housekeeping shelf count
+711,019,2026-02-24,remaining,1.082,EOD shelf count
+112,003,2026-02-24,remaining,29.4,EOD alt-milk count
+614,013,2026-02-25,received,1.2,Condensed milk refill
+173,010,2026-02-25,remaining,1.7,EOD spice drawer count
+616,014,2026-02-25,received,1.55,Almond milk restock
+612,012,2026-02-25,received,1.9,Fresh cream supplier delivery
+618,015,2026-02-25,received,0.9,Hazelnut syrup top-up
+163,009,2026-02-25,remaining,10.1,EOD dry storage count
+34,001,2026-02-26,remaining,13.42,EOD shelf count
+693,017,2026-02-26,remaining,3.182,EOD shelf count
+721,020,2026-02-26,remaining,5.153,EOD shelf count
+144,007,2026-02-27,remaining,296.0,EOD tea bin count
+621,011,2026-02-27,remaining,39.33,EOD espresso bean count
+625,013,2026-02-27,remaining,50.39,EOD condensed milk count
+702,018,2026-02-27,remaining,1.456,EOD shelf count
+627,014,2026-02-27,remaining,63.77,EOD almond milk count
+90,002,2026-02-27,remaining,130.3,EOD fridge count
+629,015,2026-02-27,remaining,36.43,EOD hazelnut syrup count
+683,016,2026-02-27,remaining,0.174,EOD shelf count
+620,011,2026-02-27,received,1.0,Espresso bean replenishment
+623,012,2026-02-27,remaining,73.61,EOD fresh cream count
+712,019,2026-02-28,remaining,1.01,EOD shelf count
+624,013,2026-03-02,received,1.25,Condensed milk refill
+626,014,2026-03-02,received,1.6,Almond milk restock
+628,015,2026-03-02,received,0.8,Hazelnut syrup top-up
+722,020,2026-03-02,remaining,3.907,EOD shelf count
+694,017,2026-03-02,remaining,2.738,EOD shelf count
+684,016,2026-03-02,remaining,0.174,EOD shelf count
+85,002,2026-03-02,received,10.0,Morning milk delivery
+622,012,2026-03-02,received,1.8,Fresh cream supplier delivery
+637,014,2026-03-03,remaining,65.01,EOD almond milk count
+639,015,2026-03-03,remaining,37.16,EOD hazelnut syrup count
+703,018,2026-03-03,remaining,1.405,EOD shelf count
+635,013,2026-03-03,remaining,51.41,EOD condensed milk count
+633,012,2026-03-03,remaining,75.1,EOD fresh cream count
+631,011,2026-03-03,remaining,40.07,EOD espresso bean count
+35,001,2026-03-03,remaining,13.05,EOD shelf count
+630,011,2026-03-04,received,0.9,Espresso bean replenishment
+638,015,2026-03-04,received,0.85,Hazelnut syrup top-up
+632,012,2026-03-04,received,1.85,Fresh cream supplier delivery
+713,019,2026-03-04,remaining,0.979,EOD shelf count
+636,014,2026-03-05,received,1.5,Almond milk restock
+723,020,2026-03-05,remaining,3.384,EOD shelf count
+695,017,2026-03-05,remaining,2.677,EOD shelf count
+685,016,2026-03-05,remaining,0.162,EOD shelf count
+634,013,2026-03-06,received,1.3,Condensed milk refill
+92,002,2026-03-06,remaining,135.5,EOD fridge count
+113,003,2026-03-07,remaining,28.7,EOD alt-milk count
+704,018,2026-03-07,remaining,1.209,EOD shelf count
+649,015,2026-03-07,remaining,37.92,EOD hazelnut syrup count
+714,019,2026-03-07,remaining,0.91,EOD shelf count
+641,011,2026-03-07,remaining,40.84,EOD espresso bean count
+645,013,2026-03-07,remaining,52.39,EOD condensed milk count
+647,014,2026-03-07,remaining,66.28,EOD almond milk count
+643,012,2026-03-07,remaining,76.62,EOD fresh cream count
+176,001,2026-03-08,remaining,0.1,
+686,016,2026-03-08,remaining,0.145,EOD shelf count
+640,011,2026-03-09,received,0.95,Espresso bean replenishment
+696,017,2026-03-09,remaining,2.151,EOD shelf count
+642,012,2026-03-09,received,1.9,Fresh cream supplier delivery
+648,015,2026-03-09,received,0.9,Hazelnut syrup top-up
+646,014,2026-03-09,received,1.55,Almond milk restock
+87,002,2026-03-09,received,10.0,Morning milk delivery
+724,020,2026-03-09,remaining,2.185,EOD shelf count
+644,013,2026-03-09,received,1.2,Condensed milk refill
+705,018,2026-03-10,remaining,1.031,EOD shelf count
+715,019,2026-03-10,remaining,0.843,EOD shelf count
+687,016,2026-03-11,remaining,0.139,EOD shelf count
+657,014,2026-03-11,remaining,67.58,EOD almond milk count
+659,015,2026-03-11,remaining,38.56,EOD hazelnut syrup count
+658,015,2026-03-11,received,0.8,Hazelnut syrup top-up
+655,013,2026-03-11,remaining,53.4,EOD condensed milk count
+653,012,2026-03-11,remaining,78.1,EOD fresh cream count
+651,011,2026-03-11,remaining,41.64,EOD espresso bean count
+94,002,2026-03-12,remaining,139.8,EOD fridge count
+654,013,2026-03-12,received,1.25,Condensed milk refill
+650,011,2026-03-12,received,1.0,Espresso bean replenishment
+706,018,2026-03-13,remaining,0.986,EOD shelf count
+652,012,2026-03-13,received,1.8,Fresh cream supplier delivery
+716,019,2026-03-13,remaining,0.754,EOD shelf count
+697,017,2026-03-13,remaining,1.843,EOD shelf count
+725,020,2026-03-13,remaining,1.237,EOD shelf count
+688,016,2026-03-14,remaining,0.135,EOD shelf count
+177,001,2026-03-14,remaining,0.1,
+661,011,2026-03-15,remaining,42.6,EOD espresso bean count
+663,012,2026-03-15,remaining,79.81,EOD fresh cream count
+665,013,2026-03-15,remaining,54.64,EOD condensed milk count
+669,015,2026-03-15,remaining,39.51,EOD hazelnut syrup count
+667,014,2026-03-15,remaining,68.96,EOD almond milk count
+707,018,2026-03-16,remaining,0.87,EOD shelf count
+656,014,2026-03-16,received,1.6,Almond milk restock
+660,011,2026-03-16,received,1.1,Espresso bean replenishment
+89,002,2026-03-16,received,10.0,Morning milk delivery
+698,017,2026-03-17,remaining,1.617,EOD shelf count
+662,012,2026-03-17,received,2.05,Fresh cream supplier delivery
+95,002,2026-03-17,received,10.0,Morning milk delivery
+668,015,2026-03-17,received,1.05,Hazelnut syrup top-up
+726,020,2026-03-17,remaining,0.241,EOD shelf count
+717,019,2026-03-17,remaining,0.684,EOD shelf count
+666,014,2026-03-18,received,1.7,Almond milk restock
+664,013,2026-03-18,received,1.5,Condensed milk refill
+93,002,2026-03-18,received,10.0,Morning milk delivery
+689,016,2026-03-18,remaining,0.119,EOD shelf count
+96,002,2026-03-19,remaining,145.2,EOD fridge count
+154,008,2026-03-19,remaining,8.9,EOD housekeeping shelf count
+118,004,2026-03-19,remaining,1.9,EOD shelf count
+174,010,2026-03-19,remaining,0.1,
+175,003,2026-03-19,remaining,0.2,
+124,005,2026-03-19,remaining,190.0,Weekly storeroom count
+134,006,2026-03-19,remaining,22.9,EOD dry storage count
+91,002,2026-03-19,received,10.0,Morning milk delivery
+164,009,2026-03-19,remaining,9.4,EOD dry storage count
+145,007,2026-03-19,remaining,284.0,EOD tea bin count
+679,015,2026-03-19,remaining,40.29,EOD hazelnut syrup count
+708,018,2026-03-19,remaining,0.711,EOD shelf count
+670,011,2026-03-19,received,0.95,Espresso bean replenishment
+671,011,2026-03-19,remaining,43.39,EOD espresso bean count
+672,012,2026-03-19,received,1.9,Fresh cream supplier delivery
+673,012,2026-03-19,remaining,81.35,EOD fresh cream count
+674,013,2026-03-19,received,1.2,Condensed milk refill
+675,013,2026-03-19,remaining,55.56,EOD condensed milk count
+676,014,2026-03-19,received,1.55,Almond milk restock
+677,014,2026-03-19,remaining,70.25,EOD almond milk count
+678,015,2026-03-19,received,0.9,Hazelnut syrup top-up
+680,016,2026-03-20,remaining,0.2,
+699,017,2026-03-20,remaining,1.391,EOD shelf count
+718,019,2026-03-20,remaining,0.652,EOD shelf count
+690,016,2026-03-20,remaining,0.12,EOD shelf count
+709,018,2026-03-20,remaining,0.689,EOD shelf count
+727,020,2026-03-20,remaining,0.0,EOD shelf count
+728,003,2026-03-20,remaining,0.1,Orders today

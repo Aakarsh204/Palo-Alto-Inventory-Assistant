@@ -1,0 +1,440 @@
+{% extends "base.html" %}
+
+{% block title %}Recipes & Demand Forecast - CaféTrack Inventory Assistant{% endblock %}
+
+{% block content %}
+<div class="recipes-container">
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1>☕ Recipes & Demand Forecast</h1>
+        <p class="subtitle">Track ingredient consumption and forecast needs based on order history</p>
+    </div>
+
+    <!-- Recipes Cards -->
+    <div class="recipes-grid">
+        {% for recipe in recipes %}
+        <div class="recipe-card">
+            <!-- Card Header -->
+            <div class="recipe-header">
+                <div class="header-left">
+                    <h2 class="recipe-name">{{ recipe.recipe_name }}</h2>
+                    <div class="header-meta">
+                        <span class="price-badge">₹{{ recipe.selling_price }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card Body -->
+            <div class="recipe-body">
+                <!-- Left Column: Ingredients -->
+                <div class="ingredients-column">
+                    <h3 class="column-title">Ingredients</h3>
+                    
+                    {% if recipe.ingredients %}
+                    <div class="table-responsive">
+                        <table class="ingredients-table">
+                            <thead>
+                                <tr>
+                                    <th>Ingredient</th>
+                                    <th>Per Drink</th>
+                                    <th>Current Stock</th>
+                                    <th>Can Make</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for ingredient in recipe.ingredients %}
+                                <tr {% if ingredient.uses_remaining and ingredient.uses_remaining < 20 %}class="row-critical"{% endif %}>
+                                    <td class="cell-name">{{ ingredient.name }}</td>
+                                    <td class="cell-quantity">{{ ingredient.quantity_per_drink }} {{ ingredient.unit }}</td>
+                                    <td class="cell-stock">{{ ingredient.current_stock }} {{ ingredient.unit }}</td>
+                                    <td class="cell-uses">
+                                        {% if ingredient.uses_remaining is not none %}
+                                            <span class="uses-count">{{ ingredient.uses_remaining }}</span>
+                                        {% else %}
+                                            <span class="uses-unavailable">—</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Bottleneck Alert -->
+                    {% if recipe.bottleneck %}
+                    <div class="bottleneck-alert">
+                        <span class="alert-icon">⚠️</span>
+                        <div class="alert-content">
+                            <strong>Bottleneck: {{ recipe.bottleneck.name }}</strong>
+                            <p>Runs out in ~{{ recipe.bottleneck.days_remaining }} days at current order volume</p>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% else %}
+                    <p class="no-data">No ingredients found for this recipe.</p>
+                    {% endif %}
+                </div>
+
+                <!-- Right Column: Demand Forecast -->
+                <div class="forecast-column">
+                    <h3 class="column-title">7-Day Demand Forecast</h3>
+                    
+                    {% if recipe.forecast %}
+                    <div class="forecast-content">
+                        {% if recipe.forecast.avg_daily_demand is not none %}
+                        <div class="forecast-metric">
+                            <span class="metric-label">Avg daily demand:</span>
+                            <span class="metric-value">{{ "%.1f" | format(recipe.forecast.avg_daily_demand) }} units/day</span>
+                        </div>
+
+                        <div class="forecast-metric">
+                            <span class="metric-label">Projected 7-day usage:</span>
+                            <span class="metric-value">{{ "%.1f" | format(recipe.forecast.avg_daily_demand * 7) }} units</span>
+                        </div>
+                        {% endif %}
+
+                        {% if recipe.forecast.insufficient_data %}
+                        <div class="forecast-note">
+                            <span class="note-icon">⚙️</span>
+                            <span class="note-text">Forecast based on limited history — add more order data for accuracy</span>
+                        </div>
+                        {% endif %}
+
+                        {% if recipe.forecast.contributing_recipes %}
+                        <div class="contributing-recipes">
+                            <h4>Contributing Recipes</h4>
+                            <ul>
+                                {% for contrib in recipe.forecast.contributing_recipes %}
+                                <li>{{ contrib.recipe_id }} - {{ contrib.recipe_name }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% else %}
+                    <p class="no-data">No forecast data available.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+<style>
+/* Recipes Page Styles */
+.recipes-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+/* Page Header */
+.page-header {
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+.page-header h1 {
+    color: var(--green-dark);
+    margin: 0 0 8px 0;
+    font-size: 32px;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Recipes Grid */
+.recipes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.recipe-card {
+    background: var(--surface-card);
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.recipe-header {
+    background: linear-gradient(135deg, #111827 0%, var(--green-dark) 100%);
+    color: white;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.header-left {
+    flex: 1;
+}
+
+.recipe-name {
+    margin: 0 0 8px 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.header-meta {
+    display: flex;
+    gap: 8px;
+}
+
+.price-badge {
+    background: rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* Recipe Body */
+.recipe-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 20px;
+}
+
+.ingredients-column,
+.forecast-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.column-title {
+    color: var(--green-dark);
+    margin: 0 0 12px 0;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/* Ingredients Table */
+.table-responsive {
+    overflow-x: auto;
+    margin-bottom: 12px;
+}
+
+.ingredients-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+.ingredients-table th {
+    background-color: var(--surface-muted);
+    color: var(--text-primary);
+    padding: 8px 6px;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border);
+}
+
+.ingredients-table td {
+    padding: 8px 6px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-primary);
+}
+
+.cell-name {
+    font-weight: 500;
+}
+
+.cell-quantity,
+.cell-stock,
+.cell-uses {
+    text-align: right;
+    color: var(--text-secondary);
+}
+
+.uses-count {
+    font-weight: 600;
+    color: var(--green-dark);
+}
+
+.uses-unavailable {
+    color: #94a3b8;
+}
+
+.row-critical {
+    background-color: #fee2e2;
+}
+
+.row-critical .uses-count {
+    color: #dc2626;
+}
+
+/* Bottleneck Alert */
+.bottleneck-alert {
+    background-color: rgba(183, 121, 31, 0.14);
+    border: 1px solid rgba(183, 121, 31, 0.35);
+    border-radius: 4px;
+    padding: 12px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.alert-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.alert-content {
+    flex: 1;
+}
+
+.alert-content strong {
+    display: block;
+    color: #6b3f0f;
+    margin-bottom: 4px;
+}
+
+.alert-content p {
+    margin: 0;
+    color: #6b3f0f;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+/* Forecast Content */
+.forecast-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.forecast-metric {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.metric-label {
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+.metric-value {
+    color: var(--green-dark);
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.forecast-note {
+    background-color: rgba(47, 111, 106, 0.1);
+    border: 1px solid rgba(47, 111, 106, 0.35);
+    border-radius: 4px;
+    padding: 10px;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+}
+
+.note-icon {
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.note-text {
+    color: var(--text-primary);
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.contributing-recipes {
+    background-color: var(--surface-muted);
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.contributing-recipes h4 {
+    margin: 0 0 8px 0;
+    color: var(--text-primary);
+    font-size: 12px;
+}
+
+.contributing-recipes ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.contributing-recipes li {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin: 4px 0;
+}
+
+.no-data {
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-style: italic;
+    margin: 0;
+}
+
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .recipes-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .recipe-body {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-header h1 {
+        font-size: 24px;
+    }
+
+    .recipe-card {
+        margin: 0 -12px;
+        border-radius: 0;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+}
+
+@media (max-width: 480px) {
+    .recipes-grid {
+        gap: 16px;
+    }
+
+    .page-header h1 {
+        font-size: 20px;
+    }
+
+    .recipe-name {
+        font-size: 16px;
+    }
+
+    .recipe-body {
+        padding: 12px;
+        gap: 12px;
+    }
+
+    .column-title {
+        font-size: 12px;
+    }
+
+    .ingredients-table {
+        font-size: 11px;
+    }
+
+    .ingredients-table th,
+    .ingredients-table td {
+        padding: 6px 4px;
+    }
+}
+</style>
+{% endblock %}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}CaféTrack - Inventory Assistant{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Developer Mode Banner -->
+    {% if developer_mode %}
+    <div class="developer-banner">
+        <span>⚠️ DEVELOPER MODE ACTIVE — Simulated date: {{ simulated_date }}</span>
+    </div>
+    {% endif %}
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-brand">
+                <a href="{{ url_for('dashboard') }}">🌿 CaféTrack</a>
+            </div>
+            <ul class="navbar-links">
+                <li>
+                    <a href="{{ url_for('dashboard') }}" 
+                       class="{% if request.path == '/' %}active{% endif %}">
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('recipes') }}" 
+                       class="{% if request.path == '/recipes' %}active{% endif %}">
+                        Recipes
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('insights_all') }}" 
+                       class="{% if request.path.startswith('/insights') %}active{% endif %}">
+                        Insights
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('log_event_form') }}" 
+                       class="{% if request.path == '/log-event' %}active{% endif %}">
+                        Log Event
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('recent_logs') }}" 
+                       class="{% if request.path == '/recent-logs' %}active{% endif %}">
+                        Recent Logs
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for level, message in messages %}
+            <div class="flash-banner flash-{{ level }}" id="flash-{{ loop.index }}">
+                <div class="flash-content">
+                    <span class="flash-message">{{ message }}</span>
+                    <button class="flash-close" onclick="document.getElementById('flash-{{ loop.index }}').style.display='none';">
+                        ✕
+                    </button>
+                </div>
+            </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <!-- Main Content -->
+    <main class="main-container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Built for Palo Alto Networks FY26 IT Hiring Challenge</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,557 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - CaféTrack Inventory Assistant{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <!-- Summary Bar -->
+    {% if summary %}
+    <div class="summary-bar">
+        <div class="summary-pills">
+            <div class="pill pill-reorder">
+                <span class="pill-icon">RN</span>
+                <span class="pill-label">Reorder Now</span>
+                <span class="pill-count">{{ summary.get('reorder_now_count', 0) }}</span>
+            </div>
+            <div class="pill pill-expiry">
+                <span class="pill-icon">ER</span>
+                <span class="pill-label">Expiry Risk</span>
+                <span class="pill-count">{{ summary.get('expiry_risk_count', 0) }}</span>
+            </div>
+            <div class="pill pill-stable">
+                <span class="pill-icon">ST</span>
+                <span class="pill-label">Stable</span>
+                <span class="pill-count">{{ summary.get('stable_count', 0) }}</span>
+            </div>
+            <div class="pill pill-waste">
+                <span class="pill-icon">PW</span>
+                <span class="pill-label">Projected Waste</span>
+                <span class="pill-count">{{ summary.get('projected_waste_display', '0') }}</span>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Search and Filter Row -->
+    <div class="filter-section">
+        <form method="GET" action="/" class="filter-form">
+            <div class="filter-group">
+                <input 
+                    type="text" 
+                    name="q" 
+                    placeholder="Search by item name or ID..." 
+                    value="{{ search_query | default('', true) }}"
+                    class="filter-input"
+                >
+            </div>
+            <button type="submit" class="filter-button">Filter</button>
+        </form>
+    </div>
+
+    <!-- Inventory Table or Empty State -->
+    {% if items %}
+    <div class="table-container">
+        <table class="inventory-table">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Current Stock</th>
+                    <th>Expires</th>
+                    <th>Prediction</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr class="inventory-row">
+                    <!-- Item Name -->
+                    <td class="cell-item">
+                        <strong>{{ item.get('name', 'Unknown') }}</strong>
+                        <br>
+                        <span class="item-id">{{ item.get('item_id', '') }}</span>
+                    </td>
+
+                    <!-- Current Stock -->
+                    <td class="cell-stock">
+                        {{ item.get('current_stock', 0) }} {{ item.get('unit', 'units') }}
+                    </td>
+
+                    <!-- Days Until Expiry -->
+                    <td class="cell-expiry">
+                        {% set days_to_expiry = item.get('days_until_expiry', 0) %}
+                        {% if days_to_expiry is not none %}
+                            {% if days_to_expiry < 5 %}
+                                <span class="expiry-critical">{{ days_to_expiry }} days</span>
+                            {% elif days_to_expiry < 10 %}
+                                <span class="expiry-warning">{{ days_to_expiry }} days</span>
+                            {% else %}
+                                <span class="expiry-ok">{{ days_to_expiry }} days</span>
+                            {% endif %}
+                        {% else %}
+                            <span class="expiry-unknown">—</span>
+                        {% endif %}
+                    </td>
+
+                    <!-- AI Prediction -->
+                    <td class="cell-prediction">
+                        {% if item.get('stockout_days') is not none %}
+                            <strong>{{ item.get('stockout_days') }} days</strong>
+                        {% elif item.get('alert_source') == 'rule-based' %}
+                            <span class="badge badge-warning">Rule-based ⚙️</span>
+                        {% else %}
+                            <span class="prediction-unavailable">—</span>
+                        {% endif %}
+                    </td>
+
+                    <!-- Status Badge -->
+                    <td class="cell-status">
+                        {% set cluster = item.get('cluster_label', 'Unknown') %}
+                        {% if cluster == 'Reorder Now' %}
+                            <span class="badge badge-status-reorder">{{ cluster }}</span>
+                        {% elif cluster == 'Expiry Risk' %}
+                            <span class="badge badge-status-expiry">{{ cluster }}</span>
+                        {% elif cluster == 'High Velocity' %}
+                            <span class="badge badge-status-velocity">{{ cluster }}</span>
+                        {% elif cluster == 'Stable' %}
+                            <span class="badge badge-status-stable">{{ cluster }}</span>
+                        {% else %}
+                            <span class="badge">{{ cluster }}</span>
+                        {% endif %}
+                    </td>
+
+                    <!-- Actions -->
+                    <td class="cell-actions">
+                        <a href="{{ url_for('log_event_form') }}?item_id={{ item.get('item_id') }}" 
+                           class="action-button button-log">
+                            Log Event
+                        </a>
+                        <a href="{{ url_for('insights_single', item_id=item.get('item_id')) }}" 
+                           class="action-button button-insights">
+                            Insights
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% else %}
+    <!-- Empty State -->
+    <div class="empty-state">
+        <div class="empty-state-content">
+            <h2>No items found</h2>
+            <p>
+                {% if search_query %}
+                    No inventory items match your search or filter criteria.
+                    <br>
+                    <a href="{{ url_for('dashboard') }}" class="clear-filters">Clear filters</a>
+                {% else %}
+                    Your inventory is empty. Add items to get started!
+                {% endif %}
+            </p>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<style>
+/* Dashboard-specific styles */
+.dashboard {
+    padding: 20px 0;
+}
+
+/* Summary Bar */
+.summary-bar {
+    margin-bottom: 24px;
+}
+
+.summary-pills {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 12px;
+}
+
+.pill {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    color: #1f2937;
+    box-shadow: none;
+}
+
+.pill-icon {
+    min-width: 28px;
+    height: 28px;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #f1f5f9;
+    color: #475569;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.pill-label {
+    flex: 1;
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+.pill-count {
+    font-size: 24px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.pill-reorder {
+    background: #f8fafc;
+}
+
+.pill-expiry {
+    background: #f8fafc;
+}
+
+.pill-stable {
+    background: #f8fafc;
+}
+
+.pill-waste {
+    background: #f8fafc;
+}
+
+.pill-reorder .pill-count,
+.pill-expiry .pill-count {
+    color: #b42318;
+}
+
+.pill-reorder,
+.pill-expiry {
+    border-left: 3px solid #f4c7c3;
+}
+
+/* Filter Section */
+.filter-section {
+    background: var(--surface-card);
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.filter-form {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.filter-group {
+    flex: 1;
+    min-width: 200px;
+}
+
+.filter-input,
+.filter-select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.filter-input:focus,
+.filter-select:focus {
+    outline: none;
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.16);
+}
+
+.filter-button {
+    padding: 10px 24px;
+    align-self: flex-end;
+    white-space: nowrap;
+}
+
+/* Table Container */
+.table-container {
+    background: var(--surface-card);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    overflow-x: auto;
+}
+
+.inventory-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.inventory-table thead {
+    background-color: #1f2937;
+    color: white;
+}
+
+.inventory-table th {
+    padding: 14px 12px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 13px;
+    background: #1f2937;
+    color: white;
+}
+
+.inventory-table tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background-color 0.2s;
+}
+
+.inventory-table tbody tr:hover {
+    background-color: #f8fafc !important;
+}
+
+.inventory-row td {
+    padding: 14px 12px;
+    font-size: 14px;
+}
+
+.cell-item {
+    font-weight: 500;
+}
+
+.item-id {
+    font-size: 12px;
+    color: #64748b;
+    font-weight: normal;
+}
+
+.cell-status {
+    text-align: center;
+}
+
+.cell-stock {
+    text-align: right;
+}
+
+.cell-expiry {
+    font-weight: 500;
+}
+
+.expiry-critical {
+    color: #dc2626;
+    font-weight: 600;
+}
+
+.expiry-warning {
+    color: #475569;
+    font-weight: 600;
+}
+
+.expiry-ok {
+    color: #334155;
+}
+
+.expiry-unknown {
+    color: var(--text-secondary);
+}
+
+.cell-prediction {
+    text-align: center;
+}
+
+.prediction-unavailable {
+    color: var(--text-secondary);
+}
+
+.badge-status-reorder {
+    background-color: #fff;
+    color: #b42318;
+    border: 1px solid #f1d4d1;
+}
+
+.badge-status-expiry {
+    background-color: #fff;
+    color: #b42318;
+    border: 1px solid #f1d4d1;
+}
+
+.badge-status-velocity {
+    background-color: #eff6ff;
+    color: #1d4ed8;
+    border: 1px solid #bfdbfe;
+}
+
+.badge-status-stable {
+    background-color: #f8fafc;
+    color: #475569;
+    border: 1px solid #e2e8f0;
+}
+
+.cell-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.action-button {
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    color: white;
+    transition: opacity 0.2s;
+}
+
+.button-log {
+    background-color: #1f2937;
+}
+
+.button-log:hover {
+    opacity: 0.85;
+}
+
+.button-insights {
+    background-color: #475569;
+}
+
+.button-insights:hover {
+    opacity: 0.85;
+}
+
+/* Empty State */
+.empty-state {
+    background: var(--surface-card);
+    border-radius: 8px;
+    padding: 60px 20px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.empty-state-content h2 {
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+.empty-state-content p {
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+}
+
+.clear-filters {
+    color: #334155;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.clear-filters:hover {
+    opacity: 0.8;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .summary-pills {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .filter-form {
+        flex-direction: column;
+    }
+
+    .filter-group {
+        min-width: 100%;
+    }
+
+    .filter-button {
+        align-self: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .summary-pills {
+        grid-template-columns: 1fr;
+    }
+
+    .inventory-table {
+        font-size: 12px;
+    }
+
+    .inventory-table th,
+    .inventory-table td {
+        padding: 10px 8px;
+    }
+
+    .pill {
+        padding: 12px;
+    }
+
+    .pill-icon {
+        font-size: 10px;
+    }
+
+    .pill-count {
+        font-size: 22px;
+    }
+
+    .action-button {
+        padding: 6px 10px;
+        font-size: 11px;
+    }
+
+    .cell-actions {
+        gap: 4px;
+    }
+}
+
+@media (max-width: 480px) {
+    .inventory-table {
+        font-size: 11px;
+    }
+
+    .inventory-table th,
+    .inventory-table td {
+        padding: 8px 6px;
+    }
+
+    .action-button {
+        padding: 4px 8px;
+        font-size: 10px;
+    }
+
+    .filter-input,
+    .filter-select,
+    .filter-button {
+        width: 100%;
+    }
+
+    .filter-section {
+        padding: 12px;
+    }
+
+    .pill {
+        padding: 10px;
+        gap: 8px;
+    }
+
+    .pill-label {
+        font-size: 11px;
+    }
+
+    .pill-count {
+        font-size: 18px;
+    }
+
+    .pill-icon {
+        font-size: 10px;
+    }
+}
+</style>
+{% endblock %}

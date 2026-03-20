@@ -1,0 +1,21 @@
+item_id,name,current_stock,unit,expiry_date,reorder_threshold
+001,Coffee Beans (Arabica),19.1,kg,2026-05-18,1.2
+002,Whole Milk,10.2,L,2026-03-21,6.0
+003,Oat Milk,0.1,L,2026-04-12,4.0
+004,Vanilla Syrup,3.0,L,2026-05-22,1.0
+005,Paper Cups (12 oz),1400.0,units,2026-06-01,500.0
+006,Sugar (Cane),21.85,kg,2026-05-25,10.0
+007,Green Tea Bags,260.0,units,2026-04-08,120.0
+008,Cleaning Spray (Food-safe),6.0,L,2026-04-18,2.0
+009,Oat Flour,7.5,kg,2026-04-24,3.0
+010,Cardamom Pods,1.4,kg,2026-04-10,0.5
+011,Espresso Roast Beans,0.31,kg,2026-04-30,1.0
+012,Fresh Cream,3.8,L,2026-03-27,2.0
+013,Sweetened Condensed Milk,3.8,L,2026-04-15,1.5
+014,Almond Milk,5.5,L,2026-04-20,2.5
+015,Hazelnut Syrup,2.3,L,2026-05-28,0.8
+016,Saffron Threads,0.2,kg,2026-07-15,0.1
+017,Cocoa Powder,3.6,kg,2026-08-01,1.2
+018,Cinnamon Powder,1.8,kg,2026-07-25,0.6
+019,Sea Salt Flakes,1.2,kg,2026-09-10,0.4
+020,Whipping Cream,6.5,L,2026-04-18,2.0
