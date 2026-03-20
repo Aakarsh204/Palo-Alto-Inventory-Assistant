@@ -3,7 +3,7 @@
 Candidate Name: Aakarsh Pathak    
 Scenario Chosen: Green-Tech Inventory Assistant     
 Estimated Time Spent: 7 hours
-
+Link to video: (https://youtu.be/v5ktPSR8Rvo)
 ## Quick Start
 
 ### Prerequisites
