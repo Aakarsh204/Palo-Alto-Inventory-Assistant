@@ -97,6 +97,8 @@ pytest tests/test_api_connectivity.py
 	- Full deployment setup (containerization/CI pipeline/infrastructure-as-code).
 	- Advanced frontend polish and accessibility audit.
     - Scraping from static but real sites for supplier alternatives.
+    - Advanced visualizations such as graphs and charts.
+    - Integration of total cost for purchasing the expiring or ending stock items.
 
 - What would you build next if you had more time?
 	- Add persistent database storage with migrations instead of CSV-backed storage.
