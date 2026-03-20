@@ -1,0 +1,12 @@
+venv/
+
+# Local environment variables (contains secrets)
+.env
+
+# VS Code workspace settings
+.vscode/
+
+# Test/runtime caches generated in this repo
+.pytest_cache/
+__pycache__/
+*.pyc
